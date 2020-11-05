@@ -1,4 +1,6 @@
+import { EventoService } from './../../services/evento.service';
 import { Component, OnInit } from '@angular/core';
+import { Evento } from 'src/app/model/evento';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  eventos: Evento[] = [];
+
+  constructor(
+    private eventoService: EventoService
+  ) { }
 
   ngOnInit(): void {
+    this.eventos = this.eventoService.findAllAvailable();
   }
 
 }
