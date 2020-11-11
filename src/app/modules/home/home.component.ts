@@ -16,7 +16,21 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.eventos = this.eventoService.findAllAvailable();
+    const date = new Date();
+    this.eventos = [{
+      id: 1,
+      dataInicio: date,
+      dataFim: date,
+      dataInicioInscricao: date,
+      dataFimInscricao: date,
+      descricao: 'Bla',
+      idOrganizador: 2,
+      local: 'Ceu',
+      nome: 'Palestrinha',
+      preco: 0,
+      qtdVagas: 4,
+      idEventoPai: null
+    }];
   }
 
 }
