@@ -1,1 +1,19 @@
-<p>home works!</p>
+<section class="home-page h-100 p-4">
+  <h2>Eventos disponíveis</h2>
+  <div class="row mt-5">
+    <div class="col-3" *ngFor="let evento of eventos">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{evento.nome}}</h3>
+          <h6 class="card-subtitle mb-2">Local: {{evento.local}}</h6>
+          <p class="card-text">{{evento.descricao}}</p>
+          <p class="card-text">Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</p>
+          <div class="d-flex justify-content-between">
+            <a class="card-link">Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}</a>
+          <button type="button" class="btn btn-light">Inscreva-se</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
