@@ -1,8 +1,28 @@
-<section class="home-page h-100 p-4">
-  <h2>Eventos disponíveis</h2>
-  <div class="row mt-5">
+<section class="home-page h-100">
+  <div class="pesquisa-container d-flex justify-content-center align-items-center">
+    <form class="input-group">
+      <input type="text" class="form-control" placeholder="Nome do evento ou palavra chave"
+        aria-label="Input para o nome do evento ou palavra chave" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn button-secondary" type="button">
+          <em class="fas fa-times"></em> Limpar
+        </button>
+      </div>
+    </form>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Data do evento</mat-label>
+      <input matInput [matDatepicker]="picker" disabled>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="cards-container row mx-2">
     <div class="col-3" *ngFor="let evento of eventos">
       <div class="card">
+        <img class="card-img-top"
+          src="https://via.placeholder.com/512x256.png?text=Imagem+do+evento"
+          alt="Imagem do evento">
         <div class="card-body">
           <h3 class="card-title">{{evento.nome}}</h3>
           <h6 class="card-subtitle mb-2">Local: {{evento.local}}</h6>
@@ -10,7 +30,7 @@
           <p class="card-text">Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</p>
           <div class="d-flex justify-content-between">
             <a class="card-link">Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}</a>
-          <button type="button" class="btn btn-light">Inscreva-se</button>
+            <button type="button" class="btn btn-light">Inscreva-se</button>
           </div>
         </div>
       </div>
