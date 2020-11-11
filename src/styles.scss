@@ -1,13 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/css/all.css';
-@import "src/variables.scss";
+@import "/src/theme.scss";
 
 .hide {
   visibility: hidden;
 }
 
 button.button-primary {
-  background-color: $color-primary;
+  background-color: var(--color-primary);
   color: white;
   &:hover {
     color: white;
@@ -16,7 +16,7 @@ button.button-primary {
 }
 
 button.button-secondary {
-  background-color: $color-secondary;
+  background-color: var(--color-secondary);
   color: white;
   &:hover {
     color: white;
