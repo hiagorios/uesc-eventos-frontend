@@ -16,7 +16,8 @@ export class CreateEventoComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(MinistranteComponent, {
-      width: '250px',
+      disableClose: true,
+      width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

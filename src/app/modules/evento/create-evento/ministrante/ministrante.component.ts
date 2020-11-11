@@ -8,7 +8,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class MinistranteComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<MinistranteComponent>) { }
+  constructor(public dialogRef: MatDialogRef<MinistranteComponent>) { 
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit(): void {
   }
