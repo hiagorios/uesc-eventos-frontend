@@ -1,3 +1,5 @@
+import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.component';
+import { MatDialog } from '@angular/material/dialog';
 import { EventoService } from './../../services/evento.service';
 import { Component, OnInit } from '@angular/core';
 import { Evento } from 'src/app/model/evento';
@@ -12,7 +14,8 @@ export class HomeComponent implements OnInit {
   eventos: Evento[] = [];
 
   constructor(
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +34,16 @@ export class HomeComponent implements OnInit {
       qtdVagas: 4,
       idEventoPai: null
     }];
+  }
+
+  openModalInscricao(evento: Evento): void {
+    const dialogRef = this.dialog.open(ModalInscricaoComponent, {
+      data: evento
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

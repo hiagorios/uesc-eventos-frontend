@@ -32,7 +32,7 @@
           <p class="card-text">Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</p>
           <div class="d-flex justify-content-between">
             <a class="card-link">Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}</a>
-            <button type="button" class="btn btn-light">Participar</button>
+            <button type="button" class="btn btn-light" (click)="openModalInscricao(evento)">Participar</button>
           </div>
         </div>
       </div>
