@@ -12,4 +12,9 @@ export class EventoService {
     // TODO
     return [];
   }
+
+  findAll(): Evento[] {
+    // TODO
+    return [];
+  }
 }
