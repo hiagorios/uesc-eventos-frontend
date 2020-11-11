@@ -8,6 +8,22 @@
       <small id="nomeHelp" class="form-text text-muted">O nome não pode estar em branco</small>
     </div>
     <div class="form-group">
+      <label for="Ministrante">Ministrante</label>
+      <div class="form-row align-items-center">
+        <div class="col-auto my-1">          
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>Escolher...</option>
+            <option value="1">Um</option>
+            <option value="2">Dois</option>
+            <option value="3">Três</option>
+          </select>
+        </div> 
+        <div class="col-auto my-1">
+          <a (click)="openDialog()"><button type="submit" class="btn btn-primary">Enviar</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
       <label for="taDescricao">Descrição</label>
       <textarea class="form-control" id="taDescricao" rows="3"></textarea>
     </div>
