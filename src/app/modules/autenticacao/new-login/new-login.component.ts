@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-new-login',
   templateUrl: './new-login.component.html',
@@ -8,12 +6,9 @@ import { Router } from '@angular/router';
 })
 export class NewLoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  goToHome() {
-    this.router.navigate(['/home']);
-  }
-
+  
 }
