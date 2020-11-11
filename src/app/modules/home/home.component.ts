@@ -23,10 +23,10 @@ export class HomeComponent implements OnInit {
       dataFim: date,
       dataInicioInscricao: date,
       dataFimInscricao: date,
-      descricao: 'Bla',
+      descricao: 'Descrição ...',
       idOrganizador: 2,
-      local: 'Ceu',
-      nome: 'Palestrinha',
+      local: 'Auditório Pav. Jorge Amado',
+      nome: 'Palestra Animais Exóticos',
       preco: 0,
       qtdVagas: 4,
       idEventoPai: null

@@ -1,6 +1,31 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/css/all.css';
+@import "/src/theme.scss";
 
 .hide {
   visibility: hidden;
+}
+
+button.button-primary {
+  background-color: var(--color-primary);
+  color: white;
+  &:hover {
+    color: white;
+    opacity: 0.9;
+  }
+}
+
+button.button-secondary {
+  background-color: var(--color-accent);
+  color: white;
+  &:hover {
+    color: white;
+    opacity: 0.9;
+  }
+}
+
+app-home {
+  .pesquisa-container mat-form-field .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
 }

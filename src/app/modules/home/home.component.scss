@@ -1,8 +1,18 @@
-.card {
-  background-color: rgb(0, 136, 248);
-  color:white;
-  font-weight: 500;
-  .card-link {
-    color:white;
+.pesquisa-container {
+  // margin-top: 1.2rem;
+  .input-group {
   }
 }
+
+.cards-container {
+  margin-top: 1.5rem;
+  .card {
+    background-color: rgb(0, 136, 248);
+    color:white;
+    font-weight: 500;
+    .card-link {
+      color:white;
+    }
+  }
+}
+
