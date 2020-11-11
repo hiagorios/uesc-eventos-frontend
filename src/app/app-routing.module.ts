@@ -5,7 +5,10 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
   {path: 'eventos', loadChildren: () => import('./modules/evento/evento.module').then(m => m.EventoModule)},
-  {path: '**', redirectTo: '/home', pathMatch: 'full'}
+  {path: 'autenticacao', loadChildren: () => import('./modules/autenticacao/autenticacao.module').then(m => m.AutenticacaoModule)},
+  {path: 'autenticacao', loadChildren: () => import('./modules/autenticacao/autenticacao.module').then(m => m.AutenticacaoModule)},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'},
+
 ];
 
 @NgModule({
