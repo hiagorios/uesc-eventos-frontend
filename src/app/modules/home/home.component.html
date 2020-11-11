@@ -1,27 +1,29 @@
 <section class="home-page h-100">
-  <div class="pesquisa-container d-flex justify-content-center align-items-center">
-    <form class="input-group">
-      <input type="text" class="form-control" placeholder="Nome do evento ou palavra chave"
-        aria-label="Input para o nome do evento ou palavra chave" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn button-secondary" type="button">
-          <em class="fas fa-times"></em> Limpar
-        </button>
-      </div>
-    </form>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Data do evento</mat-label>
-      <input matInput [matDatepicker]="picker" disabled>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker disabled="false"></mat-datepicker>
-    </mat-form-field>
+  <div class="pesquisa-container row mt-4 mx-lg-5 mx-3">
+    <div class="offset-lg-1 col-lg-5 offset-md-0 col-md-8 col-sm-12 col-xs-12 d-flex align-items-center">
+      <form class="input-group">
+        <input type="text" class="form-control" placeholder="Nome do evento ou palavra chave"
+          aria-label="Input para o nome do evento ou palavra chave" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn button-primary" type="button">
+            <em class="fas fa-times"></em> Limpar
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12 mt-md-0 mt-sm-2 mt-2">
+      <mat-form-field appearance="fill">
+        <mat-label>Data do evento</mat-label>
+        <input matInput [matDatepicker]="picker" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
   </div>
-  <div class="cards-container row mx-2">
-    <div class="col-3" *ngFor="let evento of eventos">
+  <div class="cards-container row mx-lg-5 mx-3">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xm-12" *ngFor="let evento of eventos">
       <div class="card">
-        <img class="card-img-top"
-          src="https://via.placeholder.com/512x256.png?text=Imagem+do+evento"
+        <img class="card-img-top" src="https://via.placeholder.com/512x256.png?text=Imagem+do+evento"
           alt="Imagem do evento">
         <div class="card-body">
           <h3 class="card-title">{{evento.nome}}</h3>
@@ -30,7 +32,7 @@
           <p class="card-text">Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</p>
           <div class="d-flex justify-content-between">
             <a class="card-link">Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}</a>
-            <button type="button" class="btn btn-light">Inscreva-se</button>
+            <button type="button" class="btn btn-light">Participar</button>
           </div>
         </div>
       </div>
