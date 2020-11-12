@@ -4,6 +4,11 @@ import { CommonModule } from '@angular/common';
 import { EventoListComponent } from './evento-list/evento-list.component';
 import { CreateEventoComponent } from './create-evento/create-evento.component';
 import { UpdateEventoComponent } from './update-evento/update-evento.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MinistranteComponent } from './create-evento/ministrante/ministrante.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 const routes: Routes = [
   {path: '', component: EventoListComponent},
@@ -13,10 +18,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [EventoListComponent, CreateEventoComponent, UpdateEventoComponent],
+  declarations: [EventoListComponent, CreateEventoComponent, UpdateEventoComponent, MinistranteComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    MatDialogModule,
+    RouterModule.forChild(routes),
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   exports: [
     RouterModule
