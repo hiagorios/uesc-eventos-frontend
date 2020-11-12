@@ -6,7 +6,7 @@
   visibility: hidden;
 }
 
-button.button-primary {
+button.button-primary, a.button-primary {
   background-color: var(--color-primary);
   color: white;
   &:hover {
@@ -15,7 +15,7 @@ button.button-primary {
   }
 }
 
-button.button-secondary {
+button.button-secondary, a.button-secondary {
   background-color: var(--color-accent);
   color: white;
   &:hover {

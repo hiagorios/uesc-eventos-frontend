@@ -1,25 +1,88 @@
-<section class="create-evento-page d-flex justify-content-center align-items-center h-100">
+<section>
   <form class="mt-4 card p-4 w-50">
     <h2>Criar evento</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp"
-        placeholder="Insira o nome do evento">
-      <small id="nomeHelp" class="form-text text-muted">O nome não pode estar em branco</small>
+        placeholder="Dê um bom nome ao seu evento!">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="selectMinistrante">Ministrante</label>
+        <div class="form-row align-items-center">
+          <div class="col-8">
+            <select class="custom-select mr-sm-2" id="selectMinistrante">
+              <option selected>Escolher...</option>
+              <option value="1">Um</option>
+              <option value="2">Dois</option>
+              <option value="3">Três</option>
+            </select>
+          </div>
+          <div class="col-4">
+            <a (click)="openDialog()" class="btn button-primary">Novo</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="selectEventoPai">Evento Pai</label>
+        <select class="form-control" id="selectEventoPai">
+          <option>Nenhum</option>
+          <option>Evento 1</option>
+          <option>Evento 2</option>
+          <option>Evento 3</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-6 mb-2">Período do evento</div>
+      <div class="col-6 mb-2">Período de inscrição</div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Início do evento</mat-label>
+          <input matInput [matDatepicker]="pickerInicio" disabled>
+          <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInicio disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Início das inscrições</mat-label>
+          <input matInput [matDatepicker]="pickerInicioInscricoes" disabled>
+          <mat-datepicker-toggle matSuffix [for]="pickerInicioInscricoes"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInicioInscricoes disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Fim do evento</mat-label>
+          <input matInput [matDatepicker]="pickerFim" disabled>
+          <mat-datepicker-toggle matSuffix [for]="pickerFim"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFim disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Fim das inscrições</mat-label>
+          <input matInput [matDatepicker]="pickerFimInscricoes" disabled>
+          <mat-datepicker-toggle matSuffix [for]="pickerFimInscricoes"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFimInscricoes disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
     <div class="form-group">
       <label for="taDescricao">Descrição</label>
-      <textarea class="form-control" id="taDescricao" rows="3"></textarea>
+      <textarea class="form-control" id="taDescricao" rows="3"
+        placeholder="Descreva seu evento e deixe ele mais atrativo!"></textarea>
     </div>
     <div class="form-group">
       <label for="inputLocal">Local</label>
-      <input class="form-control" id="inputLocal" placeholder="Insira o local do evento">
+      <input class="form-control" id="inputLocal" placeholder="Onde seu evento irá ocorrer?">
     </div>
     <div class="form-group">
       <label for="inputPreco">Preço</label>
       <input class="form-control" id="inputPreco" placeholder="Insira o preço do evento">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn button-primary">Cadastrar evento</button>
   </form>
 
 </section>
