@@ -22,18 +22,20 @@
   </div>
   <div class="cards-container row mx-lg-5 mx-3">
     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xm-12" *ngFor="let evento of eventos">
-      <div class="card">
+      <div class="card" (click)="openModalInscricao(evento)">
         <img class="card-img-top" src="https://via.placeholder.com/512x256.png?text=Imagem+do+evento"
           alt="Imagem do evento">
         <div class="card-body">
           <h3 class="card-title">{{evento.nome}}</h3>
-          <h6 class="card-subtitle mb-2">Local: {{evento.local}}</h6>
-          <p class="card-text">{{evento.descricao}}</p>
-          <p class="card-text">Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</p>
-          <div class="d-flex justify-content-between">
-            <a class="card-link">Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}</a>
-            <button type="button" class="btn btn-light" (click)="openModalInscricao(evento)">Participar</button>
-          </div>
+          <p class="card-text">
+            <em class="fas fa-map-marker-alt"></em> Local: {{evento.local}}
+          </p>
+          <p class="card-text">
+            <em class="fas fa-calendar-alt"></em> Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }} a {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}
+          </p>
+          <p class="card-text">
+            <em class="fas fa-calendar-alt"></em> Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}
+          </p>
         </div>
       </div>
     </div>
