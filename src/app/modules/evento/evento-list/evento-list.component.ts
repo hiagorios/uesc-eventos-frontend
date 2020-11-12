@@ -17,7 +17,8 @@ export class EventoListComponent implements OnInit {
 
   ngOnInit(): void {
     const date = new Date();
-    this.eventos = [{
+    this.eventos = [
+    {
       id: 1,
       dataInicio: date,
       dataFim: date,
@@ -30,7 +31,8 @@ export class EventoListComponent implements OnInit {
       preco: 0,
       qtdVagas: 4,
       idEventoPai: null
-    }];
+    }
+  ];
   }
 
 }
