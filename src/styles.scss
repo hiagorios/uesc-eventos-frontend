@@ -1,12 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/css/all.css';
-@import "/src/theme.scss";
+@import "src/theme.scss";
 
 .hide {
   visibility: hidden;
 }
 
-button.button-primary {
+app-root {
+  align-items: stretch;
+}
+
+button.button-primary, a.button-primary {
   background-color: var(--color-primary);
   color: white;
   &:hover {
@@ -15,7 +19,7 @@ button.button-primary {
   }
 }
 
-button.button-secondary {
+button.button-secondary, a.button-secondary {
   background-color: var(--color-accent);
   color: white;
   &:hover {
