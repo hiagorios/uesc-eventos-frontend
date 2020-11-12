@@ -6,6 +6,9 @@ import { CreateEventoComponent } from './create-evento/create-evento.component';
 import { UpdateEventoComponent } from './update-evento/update-evento.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MinistranteComponent } from './create-evento/ministrante/ministrante.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 const routes: Routes = [
   {path: '', component: EventoListComponent},
@@ -19,7 +22,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MatDialogModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   exports: [
     RouterModule

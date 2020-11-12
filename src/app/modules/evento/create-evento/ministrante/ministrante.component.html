@@ -1,28 +1,25 @@
 <h2 mat-dialog-title>Novo Ministrante </h2>
 <div mat-dialog-content>
-<section class="d-flex justify-content-center align-items-center h-100">
-  <form class="mt-4 card p-4 w-60">
+  <form class="card p-4">
     <div class="form-group">
       <label for="inputNome">Nome</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <input type="text" class="form-control" id="inputNome">
     </div>
     <div class="form-group">
-      <label for="inputNome">E-mail</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <label for="inputEmail">E-mail</label>
+      <input type="text" class="form-control" id="inputEmail">
     </div>
     <div class="form-group">
-        <label for="inputNome">Formação</label>
-        <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <label for="taFormacao">Formação</label>
+      <textarea class="form-control" id="taFormacao" rows="3"></textarea>
     </div>
     <div class="form-group">
-        <label for="inputNome">Instituição</label>
-        <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <label for="inputInstituicao">Instituição</label>
+      <input type="text" class="form-control" id="inputInstituicao">
     </div>
   </form>
-</section>
 </div>
-<div mat-dialog-actions>
-  <a><button class="btn btn-primary" (click)="cancel()">Cancela</button></a>
-  <a><button class="btn btn-primary" cdkFocusInitial>Confirma</button></a>
+<div mat-dialog-actions class="d-flex justify-content-between mt-2">
+  <button class="btn button-secondary" (click)="cancel()">Cancela</button>
+  <button class="btn button-primary" cdkFocusInitial>Confirma</button>
 </div>
-
