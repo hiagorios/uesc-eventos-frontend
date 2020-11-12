@@ -1,5 +1,5 @@
-@import '~bootstrap/scss/bootstrap';
-@import '~@fortawesome/fontawesome-free/css/all.css';
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.css";
 @import "src/theme.scss";
 
 .hide {
@@ -10,7 +10,8 @@ app-root {
   align-items: stretch;
 }
 
-button.button-primary, a.button-primary {
+button.button-primary,
+a.button-primary {
   background-color: var(--color-primary);
   color: white;
   &:hover {
@@ -19,7 +20,8 @@ button.button-primary, a.button-primary {
   }
 }
 
-button.button-secondary, a.button-secondary {
+button.button-secondary,
+a.button-secondary {
   background-color: var(--color-accent);
   color: white;
   &:hover {
