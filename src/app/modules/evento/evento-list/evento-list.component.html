@@ -1,32 +1,35 @@
 <section class="evento-list-page d-flex justify-content-center align-items-center h-100">
-  <table class="table w-75 mt-4">
-    <caption class="hide">Listagem de todos os eventos cadastrados</caption>
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Organizador</th>
-        <th scope="col">Local</th>
-        <th scope="col">Preço</th>
-        <th scope="col">Vagas</th>
-        <th scope="col">Inicio</th>
-        <th scope="col">Fim</th>
-        <th class="text-center" scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let evento of eventos">
-        <td>{{evento.nome}}</td>
-        <td>{{evento.idOrganizador}}</td>
-        <td>{{evento.local}}</td>
-        <td>{{evento.preco}}</td>
-        <td>{{evento.qtdVagas}}</td>
-        <td>{{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</td>
-        <td>{{evento.dataFim | date: 'HH:mm dd/MM/yyyy' }}</td>
-        <td class="d-flex justify-content-between">
-          <button type="button" class="btn btn-light">Editar</button>
-          <button type="button" class="btn btn-light">Remover</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card p-4 mt-4">
+    <h2>Todos os eventos</h2>
+    <table class="table w-100 mt-4 card-body">
+      <caption class="hide">Listagem de todos os eventos cadastrados</caption>
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="text-center">Nome</th>
+          <th scope="col" class="text-center">Organizador</th>
+          <th scope="col" class="text-center">Local</th>
+          <th scope="col" class="text-center">Preço</th>
+          <th scope="col" class="text-center">Vagas</th>
+          <th scope="col" class="text-center">Inicio</th>
+          <th scope="col" class="text-center">Fim</th>
+          <th class="text-center" scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let evento of eventos">
+          <td>{{evento.nome}}</td>
+          <td>{{evento.idOrganizador}}</td>
+          <td>{{evento.local}}</td>
+          <td>{{evento.preco}}</td>
+          <td>{{evento.qtdVagas}}</td>
+          <td>{{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</td>
+          <td>{{evento.dataFim | date: 'HH:mm dd/MM/yyyy' }}</td>
+          <td>
+            <button type="button" class="btn btn-light mr-1"><i class="fas fa-edit"></i> Editar</button>
+            <button type="button" class="btn btn-light"><i class="far fa-trash-alt"></i> Remover</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
