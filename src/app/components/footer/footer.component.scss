@@ -1,31 +1,34 @@
+.footer-contact {
+  padding: 1rem;
+  background-color: var(--color-primary);
+  .contato {
+    color: white;
+    font-size: 14px;
+    p {
+      margin: 0;
+      a,
+      a:hover {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .social-media {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .uesc-logo {
+    height: 60%;
+  }
+}
+
 .footer-copyright {
   font-size: 0.8rem;
   background-color: #c4c4c4;
   color: black;
   padding-left: 2rem;
 }
-
-.footer-wrapper {
-  padding: 1rem;
-  font-size: 12px;
-}
-
-.uesc-logo {
-  text-align: center;
-}
-
-.contato {
-  color: white;
-}
-
-.social-media {
-  text-align: center;
-}
-
-p {
-  a, a:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-
