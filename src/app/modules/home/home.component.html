@@ -11,13 +11,10 @@
         </div>
       </form>
     </div>
-    <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12 mt-md-0 mt-sm-2 mt-2">
-      <mat-form-field appearance="fill">
-        <mat-label>Data do evento</mat-label>
-        <input matInput [matDatepicker]="picker" disabled>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker disabled="false"></mat-datepicker>
-      </mat-form-field>
+    <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12 mt-md-0 mt-sm-2 mt-2">
+      <input [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
+          placeholder="Data do evento">
+        <owl-date-time #dtInicio pickerType="calendar" panelClass="app-datepicker"></owl-date-time>
     </div>
   </div>
   <div class="cards-container row mx-lg-5 mx-3">

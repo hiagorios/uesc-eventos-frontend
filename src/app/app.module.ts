@@ -1,12 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -18,11 +18,10 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     NgbModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatNativeDateModule
+    BrowserAnimationsModule
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    { provide: OWL_DATE_TIME_LOCALE, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

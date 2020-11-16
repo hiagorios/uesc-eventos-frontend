@@ -1,18 +1,32 @@
-
- button{
-  margin-left: 15px;
-}
-section{
-  display: flex;
-  justify-content: center;
-}
-
 .new-login-form {
   width: 50%;
 }
 
-@media only screen and (max-width: 700px) {
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
   .new-login-form {
     width: 100%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  .new-login-form {
+    width: 80%;
   }
 }

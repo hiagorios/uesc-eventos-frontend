@@ -24,12 +24,50 @@
           <td>{{evento.qtdVagas}}</td>
           <td>{{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</td>
           <td>{{evento.dataFim | date: 'HH:mm dd/MM/yyyy' }}</td>
-          <td>
-            <button type="button" class="btn btn-light mr-1"><i class="fas fa-edit"></i> Editar</button>
-            <button type="button" class="btn btn-light"><i class="far fa-trash-alt"></i> Remover</button>
+          <td class="d-flex justify-content-between">
+            <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
+            <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <ul *ngFor="let evento of eventos" class="list-group mt-3">
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Nome</div>
+        <div>{{evento.nome}}</div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Organizador</div>
+        <div>{{evento.idOrganizador}}</div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Local</div>
+        <div>{{evento.local}}</div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Preço</div>
+        <div>{{evento.preco}}</div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Vagas</div>
+        <div>{{evento.qtdVagas}}</div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Inicio</div>
+        <div>{{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Fim</div>
+        <div>{{evento.dataFim | date: 'HH:mm dd/MM/yyyy' }}</div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div class="attribute-column d-flex align-items-center">Ações</div>
+        <div>
+          <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
+          <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
+        </div>
+      </li>
+    </ul>
   </div>
 </section>

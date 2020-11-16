@@ -1,10 +1,9 @@
-import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
+import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { DatePickerIntl } from 'src/app/utils/DatePickerIntl';
 import { HomeComponent } from './home.component';
 import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.component';
 
@@ -18,13 +17,15 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatDatepickerModule,
-    MatInputModule,
     MatDialogModule,
-    MatFormFieldModule
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    { provide: OwlDateTimeIntl, useClass: DatePickerIntl }
   ]
 })
 export class HomeModule { }

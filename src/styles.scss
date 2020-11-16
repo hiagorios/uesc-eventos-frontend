@@ -1,13 +1,18 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 @import "src/theme.scss";
 
-.hide {
-  visibility: hidden;
+body {
+  min-width: 350px;
 }
 
 app-root {
   align-items: stretch;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 button.button-primary,
@@ -33,5 +38,20 @@ a.button-secondary {
 app-home {
   .pesquisa-container mat-form-field .mat-form-field-wrapper {
     padding-bottom: 0;
+  }
+}
+
+.app-datepicker {
+  .owl-dt-container-info .owl-dt-container-info-active {
+    color: var(--color-primary);
+  }
+
+  .owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+    color: rgba(255, 255, 255, 0.85);
+    background-color: var(--color-primary);
+  }
+
+  .owl-dt-container-buttons {
+    color: var(--color-primary);
   }
 }

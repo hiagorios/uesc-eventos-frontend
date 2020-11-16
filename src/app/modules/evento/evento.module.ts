@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
+import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { DatePickerIntl } from 'src/app/utils/DatePickerIntl';
 import { CreateEventoComponent } from './create-evento/create-evento.component';
+import { MinistranteComponent } from './create-evento/ministrante/ministrante.component';
 import { EventoListComponent } from './evento-list/evento-list.component';
 import { UpdateEventoComponent } from './update-evento/update-evento.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import { MinistranteComponent } from './create-evento/ministrante/ministrante.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 
 const routes: Routes = [
   { path: '', component: EventoListComponent },
@@ -23,12 +22,14 @@ const routes: Routes = [
     CommonModule,
     MatDialogModule,
     RouterModule.forChild(routes),
-    MatDatepickerModule,
-    MatInputModule,
-    MatFormFieldModule
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    { provide: OwlDateTimeIntl, useClass: DatePickerIntl }
   ]
 })
 export class EventoModule { }

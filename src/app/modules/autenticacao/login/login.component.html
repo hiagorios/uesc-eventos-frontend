@@ -1,5 +1,5 @@
 <section class="create-evento-page d-flex justify-content-center align-items-center h-100">
-  <form class="login-form mt-4 mx-md-0 mx-2 card p-4">
+  <form class="login-form mt-4 card p-4">
     <h2>Login</h2>
     <div class="form-group">
       <label for="inputNome">E-mail</label>
@@ -9,9 +9,9 @@
       <label for="inputNome">Senha</label>
       <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
     </div>
-    <div class= "row">
-      <a routerLink="/autenticacao/new"><button type="button" class="btn button-primary">Novo Usuário</button></a>
-      <a><button type="button" class="btn button-primary">Confirma</button></a>
+    <div class="d-flex justify-content-between flex-wrap">
+      <button type="button" class="btn button-primary" routerLink="/autenticacao/new">Novo Usuário</button>
+      <button type="button" class="btn button-primary">Confirma</button>
     </div>
   </form>
 </section>

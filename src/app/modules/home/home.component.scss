@@ -1,12 +1,14 @@
-.cards-container {
-  margin-top: 1.5rem;
-  .card {
-    background-color: var(--color-primary);
-    color:white;
-    font-weight: 500;
-    cursor: pointer;
-    .card-link {
+.home-page {
+  .cards-container {
+    margin-top: 1.5rem;
+    .card {
+      background-color: var(--color-primary);
       color:white;
+      font-weight: 500;
+      cursor: pointer;
+      .card-link {
+        color:white;
+      }
     }
   }
 }

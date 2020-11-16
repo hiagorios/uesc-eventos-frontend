@@ -1,18 +1,37 @@
-form.card {
-  min-width: 350px;
-}
-
 section{
   display: flex;
   justify-content: center;
 }
 
 .evento-form {
-  width: 50%;
+  width: 70%;
 }
 
-@media only screen and (max-width: 1000px) {
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
   .evento-form {
     width: 100%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  .evento-form {
+    width: 80%;
   }
 }
