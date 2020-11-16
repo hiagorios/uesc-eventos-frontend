@@ -4,20 +4,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { DatePickerIntl } from 'src/app/utils/DatePickerIntl';
-import { CreateEventoComponent } from './create-evento/create-evento.component';
-import { MinistranteComponent } from './create-evento/ministrante/ministrante.component';
+import { EventoFormComponent } from './evento-form/evento-form.component';
+import { MinistranteComponent } from './evento-form/ministrante/ministrante.component';
 import { EventoListComponent } from './evento-list/evento-list.component';
-import { UpdateEventoComponent } from './update-evento/update-evento.component';
 
 const routes: Routes = [
   { path: '', component: EventoListComponent },
-  { path: 'new', component: CreateEventoComponent },
-  { path: 'edit/:id', component: UpdateEventoComponent },
+  { path: 'new', component: EventoFormComponent },
+  { path: 'edit/:id', component: EventoFormComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
-  declarations: [EventoListComponent, CreateEventoComponent, UpdateEventoComponent, MinistranteComponent],
+  declarations: [EventoListComponent, EventoFormComponent, MinistranteComponent],
   imports: [
     CommonModule,
     MatDialogModule,

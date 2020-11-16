@@ -3,11 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MinistranteComponent } from './ministrante/ministrante.component';
 
 @Component({
-  selector: 'app-create-evento',
-  templateUrl: './create-evento.component.html',
-  styleUrls: ['./create-evento.component.scss']
+  selector: 'app-evento-form',
+  templateUrl: './evento-form.component.html',
+  styleUrls: ['./evento-form.component.scss']
 })
-export class CreateEventoComponent implements OnInit {
+export class EventoFormComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
