@@ -11,7 +11,7 @@ export class ModalInscricaoComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModalInscricaoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Evento
+    @Inject(MAT_DIALOG_DATA) public evento: Evento
   ) { }
 
   ngOnInit(): void {

@@ -1,16 +1,36 @@
-<div class="modal-wrapper p-4">
-  <h3 class="d-flex justify-content-between align-items-center">
-    {{data.nome}}
+<div class="app-modal-wrapper p-4">
+  <h3 class="app-modal-header d-flex justify-content-between align-items-center">
+    {{evento.nome}}
     <span class="badge color-danger ml-auto">Vagas: 31/40</span>
   </h3>
-  <div>
-    <p>Local: {{data.local}}</p>
-    <p>Data: {{data.dataInicio | date: 'HH:mm dd/MM/yyyy'}}</p>
-    <p>Inscrições até {{data.dataFimInscricao | date: 'HH:mm dd/MM/yyyy'}}</p>
-    <p>Descrição: {{data.descricao}}</p>
+  <hr />
+  <div class="app-modal-content">
+    <div class="row info">
+      <div class="col-12 col-md-7 d-flex flex-column justify-content-around">
+        <p>
+          <em class="fas fa-map-marker-alt"></em> Local: {{evento.local}}
+        </p>
+        <p>
+          <em class="fas fa-money-bill-wave"></em> Preço: {{evento.preco != 0 ? 'R$' + evento.preco : 'Gratuito'}}
+        </p>
+        <p>
+          <em class="fas fa-calendar-alt"></em> Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }} a {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}
+        </p>
+        <p>
+          <em class="fas fa-calendar-alt"></em> Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}
+        </p>
+      </div>
+      <div class="col mt-3 mt-sm-3 mt-md-0">
+        <img class="card-img-top" src="https://via.placeholder.com/512x256.png?text=Imagem+do+evento"
+          alt="Imagem do evento">
+      </div>
+    </div>
+    <div class="card p-2 mt-3">
+      <p>{{evento.descricao}}</p>
+    </div>
   </div>
-  <div class="d-flex justify-content-between">
+  <div class="app-modal-footer d-flex justify-content-between mt-2">
     <button class="button-light" mat-dialog-close>Cancelar</button>
-    <button class="button-primary" mat-button (click)="onConfirm()">Confirmar</button>
+    <button class="button-primary" mat-button (click)="onConfirm()">Inscrever-se</button>
   </div>
 </div>
