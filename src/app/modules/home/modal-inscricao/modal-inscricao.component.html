@@ -1,11 +1,16 @@
-<h1 mat-dialog-title>{{data.nome}}</h1>
-<div mat-dialog-content>
-  <p>Local: {{data.local}}</p>
-  <p>Data: {{data.dataInicio | date: 'HH:mm dd/MM/yyyy'}}</p>
-  <p>Inscrições até {{data.dataFimInscricao | date: 'HH:mm dd/MM/yyyy'}}</p>
-  <p>Descrição: {{data.descricao}}</p>
-</div>
-<div mat-dialog-actions class="d-flex justify-content-between">
-  <button class="btn button-secondary" mat-dialog-close>Cancelar</button>
-  <button class="btn button-primary" mat-button (click)="onConfirm()">Confirmar</button>
+<div class="modal-wrapper p-4">
+  <h3 class="d-flex justify-content-between align-items-center">
+    {{data.nome}}
+    <span class="badge color-danger ml-auto">Vagas: 31/40</span>
+  </h3>
+  <div>
+    <p>Local: {{data.local}}</p>
+    <p>Data: {{data.dataInicio | date: 'HH:mm dd/MM/yyyy'}}</p>
+    <p>Inscrições até {{data.dataFimInscricao | date: 'HH:mm dd/MM/yyyy'}}</p>
+    <p>Descrição: {{data.descricao}}</p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <button class="button-light" mat-dialog-close>Cancelar</button>
+    <button class="button-primary" mat-button (click)="onConfirm()">Confirmar</button>
+  </div>
 </div>

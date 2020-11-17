@@ -15,23 +15,21 @@ app-root {
   visibility: hidden;
 }
 
-button.button-primary,
-a.button-primary {
-  background-color: var(--color-primary);
-  color: white;
-  &:hover {
-    color: white;
-    opacity: 0.9;
-  }
+.dialog-no-padding .mat-dialog-container {
+  padding: 0px !important;
 }
 
-button.button-secondary,
-a.button-secondary {
-  background-color: var(--color-accent);
-  color: white;
-  &:hover {
-    color: white;
-    opacity: 0.9;
+
+button.button,
+a.button {
+  &-primary, &-primary:hover {
+    @extend .btn, .color-primary;
+  }
+  &-secondary, &-secondary:hover {
+    @extend .btn, .color-secondary;
+  }
+  &-light, &-light:hover {
+    @extend .btn, .color-light;
   }
 }
 
@@ -47,7 +45,7 @@ app-home {
   }
 
   .owl-dt-calendar-table .owl-dt-calendar-cell-selected {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--color-primary-contrast);
     background-color: var(--color-primary);
   }
 
