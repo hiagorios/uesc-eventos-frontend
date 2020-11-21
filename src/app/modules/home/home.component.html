@@ -13,8 +13,8 @@
     </div>
     <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12 mt-md-0 mt-sm-2 mt-2">
       <input [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
-          placeholder="Data do evento">
-        <owl-date-time #dtInicio pickerType="calendar" panelClass="app-datepicker"></owl-date-time>
+        placeholder="Data do evento">
+      <owl-date-time #dtInicio pickerType="calendar" panelClass="app-datepicker"></owl-date-time>
     </div>
   </div>
   <div class="cards-container row mx-lg-5 mx-3">
@@ -28,10 +28,10 @@
             <em class="fas fa-map-marker-alt"></em> Local: {{evento.local}}
           </p>
           <p class="card-text">
-            <em class="fas fa-calendar-alt"></em> Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }} a {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}
+            <em class="fas fa-calendar-alt"></em> Data: {{evento.inicio | date: 'HH:mm dd/MM/yyyy'}} a {{evento.inicio | date: 'HH:mm dd/MM/yyyy'}}
           </p>
           <p class="card-text">
-            <em class="fas fa-calendar-alt"></em> Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}
+            <em class="fas fa-calendar-alt"></em> Inscrições até {{evento.fimInscricoes | date: 'HH:mm dd/MM/yyyy'}}
           </p>
         </div>
       </div>

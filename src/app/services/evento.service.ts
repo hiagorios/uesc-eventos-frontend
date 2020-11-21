@@ -1,20 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Evento } from '../model/evento';
+import { Observable } from 'rxjs';
+import { EventoDTO } from '../model/dto/evento-dto';
+import { EventoFormDTO } from '../model/dto/evento-form-dto';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventoService {
+export class EventoService extends BaseService<EventoDTO, EventoFormDTO, EventoFormDTO>{
 
-  constructor() { }
-
-  findAllAvailable(): Evento[] {
-    // TODO
-    return [];
+  constructor(public http: HttpClient) {
+    super(http, 'eventos');
   }
 
-  findAll(): Evento[] {
-    // TODO
-    return [];
+  findAllAvailable(): Observable<EventoDTO[]> {
+    return this.http.get<EventoDTO[]>(
+      this.createUrl([this.endpoint, 'available'])
+    );
   }
 }

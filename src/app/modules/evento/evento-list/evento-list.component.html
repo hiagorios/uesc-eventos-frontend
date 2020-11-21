@@ -2,12 +2,13 @@
   <div class="card p-4 mt-4">
     <h2>Todos os eventos</h2>
     <table class="table w-100 mt-4 card-body">
-      <caption class="hide">Listagem de todos os eventos cadastrados</caption>
+      <caption *ngIf="!eventos || eventos.length == 0">
+        Nenhum evento cadastrado
+      </caption>
       <thead>
         <tr class="table-primary">
           <th scope="col" class="text-center">Nome</th>
           <th scope="col" class="text-center">Organizador</th>
-          <th scope="col" class="text-center">Local</th>
           <th scope="col" class="text-center">Preço</th>
           <th scope="col" class="text-center">Vagas</th>
           <th scope="col" class="text-center">Inicio</th>
@@ -17,57 +18,63 @@
       </thead>
       <tbody>
         <tr *ngFor="let evento of eventos">
-          <td>{{evento.nome}}</td>
-          <td>{{evento.idOrganizador}}</td>
-          <td>{{evento.local}}</td>
-          <td>{{evento.preco}}</td>
-          <td>{{evento.qtdVagas}}</td>
-          <td>{{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</td>
-          <td>{{evento.dataFim | date: 'HH:mm dd/MM/yyyy' }}</td>
-          <td class="d-flex justify-content-between">
-            <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
-            <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
+          <td class="text-center">{{evento.nome}}</td>
+          <td class="text-center">{{evento.organizador.nome}}</td>
+          <td class="text-center">{{evento.preco}}</td>
+          <td class="text-center">{{evento.qtdVagas}}</td>
+          <td class="text-center">{{evento.inicio | date: 'HH:mm dd/MM/yyyy' }}</td>
+          <td class="text-center">{{evento.fim | date: 'HH:mm dd/MM/yyyy' }}</td>
+          <td class="d-flex justify-content-around">
+            <button type="button" class="btn btn-light mr-1" [routerLink]="['edit', evento.id]">
+              <em class="fas fa-edit"></em> Editar
+            </button>
+            <button type="button" class="btn btn-light" (click)="deleteEvento(evento)">
+              <em class="far fa-trash-alt"></em> Remover
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <ul *ngFor="let evento of eventos" class="list-group mt-3">
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Nome</div>
-        <div>{{evento.nome}}</div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Organizador</div>
-        <div>{{evento.idOrganizador}}</div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Local</div>
-        <div>{{evento.local}}</div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Preço</div>
-        <div>{{evento.preco}}</div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Vagas</div>
-        <div>{{evento.qtdVagas}}</div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Inicio</div>
-        <div>{{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}</div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Fim</div>
-        <div>{{evento.dataFim | date: 'HH:mm dd/MM/yyyy' }}</div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
-        <div class="attribute-column d-flex align-items-center">Ações</div>
-        <div>
-          <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
-          <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
-        </div>
-      </li>
-    </ul>
+    <div *ngIf="eventos && eventos.length > 0; else nenhumEvento" class="list-group-wrapper">
+      <ul *ngFor="let evento of eventos" class="list-group mt-3">
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Nome</div>
+          <div>{{evento.nome}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Organizador</div>
+          <div>{{evento.organizador.nome}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Preço</div>
+          <div>{{evento.preco}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Vagas</div>
+          <div>{{evento.qtdVagas}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Inicio</div>
+          <div>{{evento.inicio | date: 'HH:mm dd/MM/yyyy' }}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Fim</div>
+          <div>{{evento.fim | date: 'HH:mm dd/MM/yyyy' }}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Ações</div>
+          <div>
+            <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
+            <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #nenhumEvento>
+      <p class="msg-nenhum-evento">
+        Nenhum evento cadastrado
+      </p>
+    </ng-template>
   </div>
 </section>
