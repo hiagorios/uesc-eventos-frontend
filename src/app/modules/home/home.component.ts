@@ -1,8 +1,8 @@
-import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.component';
-import { MatDialog } from '@angular/material/dialog';
-import { EventoService } from './../../services/evento.service';
 import { Component, OnInit } from '@angular/core';
-import { Evento } from 'src/app/model/evento';
+import { MatDialog } from '@angular/material/dialog';
+import { EventoDTO } from './../../model/dto/evento-dto';
+import { EventoService } from './../../services/evento.service';
+import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.component';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ import { Evento } from 'src/app/model/evento';
 })
 export class HomeComponent implements OnInit {
 
-  eventos: Evento[] = [];
+  eventos: EventoDTO[] = [];
 
   constructor(
     private eventoService: EventoService,
@@ -19,67 +19,13 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const date = new Date();
-    this.eventos = [{
-      id: 1,
-      dataInicio: date,
-      dataFim: date,
-      dataInicioInscricao: date,
-      dataFimInscricao: date,
-      descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eleifend tincidunt arcu, et cursus risus fermentum eu. Donec non eros diam. Aenean vulputate leo et ante aliquam, semper tempor dui interdum. Vivamus mollis, augue non vestibulum efficitur, leo odio porta metus, ut tincidunt enim velit id massa. Vestibulum et nulla libero. Sed et suscipit nibh. Donec dignissim interdum eros non egestas. Nullam hendrerit turpis nec turpis congue porttitor. Curabitur velit ex, efficitur at semper et, laoreet a urna. Suspendisse sit amet dapibus purus. Fusce a blandit magna, ac interdum ex. Maecenas viverra quis ante vitae lobortis. Cras sed libero eu justo consequat sollicitudin viverra id nisi.',
-      idOrganizador: 2,
-      local: 'Auditório Pav. Jorge Amado',
-      nome: 'Palestra Animais Exóticos',
-      preco: 0,
-      qtdVagas: 100,
-      idEventoPai: null
-    },
-    {
-      id: 2,
-      dataInicio: date,
-      dataFim: date,
-      dataInicioInscricao: date,
-      dataFimInscricao: date,
-      descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eleifend tincidunt arcu, et cursus risus fermentum eu. Donec non eros diam. Aenean vulputate leo et ante aliquam, semper tempor dui interdum. Vivamus mollis, augue non vestibulum efficitur, leo odio porta metus, ut tincidunt enim velit id massa. Vestibulum et nulla libero. Sed et suscipit nibh. Donec dignissim interdum eros non egestas. Nullam hendrerit turpis nec turpis congue porttitor. Curabitur velit ex, efficitur at semper et, laoreet a urna. Suspendisse sit amet dapibus purus. Fusce a blandit magna, ac interdum ex. Maecenas viverra quis ante vitae lobortis. Cras sed libero eu justo consequat sollicitudin viverra id nisi.',
-      idOrganizador: 2,
-      local: 'Pav. de Ciências Exatas e Tecnológicas',
-      nome: 'Campeonato de CS',
-      preco: 0,
-      qtdVagas: 20,
-      idEventoPai: null
-    },
-    {
-      id: 2,
-      dataInicio: date,
-      dataFim: date,
-      dataInicioInscricao: date,
-      dataFimInscricao: date,
-      descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eleifend tincidunt arcu, et cursus risus fermentum eu. Donec non eros diam. Aenean vulputate leo et ante aliquam, semper tempor dui interdum. Vivamus mollis, augue non vestibulum efficitur, leo odio porta metus, ut tincidunt enim velit id massa. Vestibulum et nulla libero. Sed et suscipit nibh. Donec dignissim interdum eros non egestas. Nullam hendrerit turpis nec turpis congue porttitor. Curabitur velit ex, efficitur at semper et, laoreet a urna. Suspendisse sit amet dapibus purus. Fusce a blandit magna, ac interdum ex. Maecenas viverra quis ante vitae lobortis. Cras sed libero eu justo consequat sollicitudin viverra id nisi.',
-      idOrganizador: 2,
-      local: 'Céu',
-      nome: 'Campeonato de Pebolim',
-      preco: 0,
-      qtdVagas: 20,
-      idEventoPai: null
-    },
-    {
-      id: 2,
-      dataInicio: date,
-      dataFim: date,
-      dataInicioInscricao: date,
-      dataFimInscricao: date,
-      descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eleifend tincidunt arcu, et cursus risus fermentum eu. Donec non eros diam. Aenean vulputate leo et ante aliquam, semper tempor dui interdum. Vivamus mollis, augue non vestibulum efficitur, leo odio porta metus, ut tincidunt enim velit id massa. Vestibulum et nulla libero. Sed et suscipit nibh. Donec dignissim interdum eros non egestas. Nullam hendrerit turpis nec turpis congue porttitor. Curabitur velit ex, efficitur at semper et, laoreet a urna. Suspendisse sit amet dapibus purus. Fusce a blandit magna, ac interdum ex. Maecenas viverra quis ante vitae lobortis. Cras sed libero eu justo consequat sollicitudin viverra id nisi.',
-      idOrganizador: 2,
-      local: 'Pav. Max de Menezes',
-      nome: 'Debate de eleições do DCE',
-      preco: 0,
-      qtdVagas: 20,
-      idEventoPai: null
-    }
-    ];
+    this.eventoService.findAllAvailable().subscribe(eventos => {
+      this.eventos = eventos;
+      console.log(eventos);
+    });
   }
 
-  openModalInscricao(evento: Evento): void {
+  openModalInscricao(evento: EventoDTO): void {
     const dialogRef = this.dialog.open(ModalInscricaoComponent, {
       maxWidth: '900px',
       maxHeight: '90vh',

@@ -1,7 +1,7 @@
 <div class="app-modal-wrapper p-4">
   <h3 class="app-modal-header d-flex justify-content-between align-items-center">
     {{evento.nome}}
-    <span class="badge color-danger ml-auto">Vagas: 31/40</span>
+    <span class="badge color-danger ml-auto">Vagas: calcular/{{evento.qtdVagas}}</span>
   </h3>
   <hr />
   <div class="app-modal-content">
@@ -14,10 +14,10 @@
           <em class="fas fa-money-bill-wave"></em> Preço: {{evento.preco != 0 ? 'R$' + evento.preco : 'Gratuito'}}
         </p>
         <p>
-          <em class="fas fa-calendar-alt"></em> Data: {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }} a {{evento.dataInicio | date: 'HH:mm dd/MM/yyyy' }}
+          <em class="fas fa-calendar-alt"></em> Data: {{evento.inicio | date: 'HH:mm dd/MM/yyyy' }} a {{evento.inicio | date: 'HH:mm dd/MM/yyyy' }}
         </p>
         <p>
-          <em class="fas fa-calendar-alt"></em> Inscrições até {{evento.dataFimInscricao | date: 'HH:mm dd/MM/yyyy' }}
+          <em class="fas fa-calendar-alt"></em> Inscrições até {{evento.fimInscricoes | date: 'HH:mm dd/MM/yyyy' }}
         </p>
       </div>
       <div class="col mt-3 mt-sm-3 mt-md-0">

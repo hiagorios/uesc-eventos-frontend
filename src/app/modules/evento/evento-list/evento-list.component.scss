@@ -24,6 +24,9 @@
       vertical-align: middle;
     }
   }
+  .msg-nenhum-evento{
+    display: none;
+  }
   ul.list-group {
     display: none;
     .list-group-item {
@@ -63,6 +66,9 @@
       display: none;
     }
     ul.list-group {
+      display: block;
+    }
+    .msg-nenhum-evento{
       display: block;
     }
   }
