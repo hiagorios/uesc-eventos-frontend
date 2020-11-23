@@ -3,23 +3,23 @@
   <form class="card p-4">
     <div class="form-group">
       <label for="inputNome">Nome</label>
-      <input type="text" class="form-control" id="inputNome">
+      <input type="text" class="form-control" id="inputNome" value="{{ministrantex.nome}}">
     </div>
     <div class="form-group">
       <label for="inputEmail">E-mail</label>
-      <input type="text" class="form-control" id="inputEmail">
+      <input type="text" class="form-control" id="inputEmail" value="{{ministrantex.email}}">
     </div>
     <div class="form-group">
       <label for="taFormacao">Formação</label>
-      <textarea class="form-control" id="taFormacao" rows="3"></textarea>
+      <textarea class="form-control" id="taFormacao" rows="3" ></textarea>
     </div>
     <div class="form-group">
       <label for="inputInstituicao">Instituição</label>
-      <input type="text" class="form-control" id="inputInstituicao">
+      <input type="text" class="form-control" id="inputInstituicao" value="{{ministrantex.formacao}}">
     </div>
   </form>
 </div>
 <div mat-dialog-actions class="d-flex justify-content-between mt-2">
   <button class="btn button-secondary" (click)="cancel()">Cancela</button>
-  <button class="btn button-primary" cdkFocusInitial>Confirma</button>
+  <button class="btn button-primary" (click)="createMinistrante(ministrantex)" cdkFocusInitial>Confirma</button>
 </div>

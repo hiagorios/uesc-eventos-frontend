@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { EventoDTO } from 'src/app/model/dto/evento-dto';
+import { EventoFormDTO } from 'src/app/model/dto/evento-form-dto';
+import { MinistranteDTO } from 'src/app/model/dto/ministrante-dto';
+import { EventoService } from 'src/app/services/evento.service';
 import { MinistranteComponent } from './ministrante/ministrante.component';
 
 @Component({
@@ -8,8 +12,13 @@ import { MinistranteComponent } from './ministrante/ministrante.component';
   styleUrls: ['./evento-form.component.scss']
 })
 export class EventoFormComponent implements OnInit {
+  
+  evento: EventoFormDTO;
+  eventos: EventoDTO[];
+  ministrantes: MinistranteDTO[];
+  ministrantesEscohidos: number[];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private service: EventoService) { }
 
   ngOnInit(): void {
   }
@@ -24,5 +33,15 @@ export class EventoFormComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-
+  createEvento(evento: EventoFormDTO): void{
+    this.service.create(evento).subscribe(() => {
+      console.log('Evento created!');
+    }, error => {
+      alert('Could not create this Evento');
+    });
+  }
+  chooseMinistrante(ministranteId: number): void{
+    this.ministrantesEscohidos.push(ministranteId)
+  }
+  
 }

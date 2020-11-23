@@ -3,27 +3,27 @@
     <h2>Novo Usuário</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value="{{nome}}">
     </div>
     <div class="form-group">
       <label for="inputNome">Sobrenome</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value="{{sobrenome}}">
     </div>
     <div class="form-group">
       <label for="inputNome">E-mail</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp"value = "{{usuario.email}}">
     </div>
     <div class="form-group">
       <label for="inputNome">Senha</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value = "{{senha1}}">
     </div>
     <div class="form-group">
       <label for="inputNome">Confirma Senha</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value = "{{senha2}}">
     </div>
     <div class="d-flex justify-content-between">
       <button type="button" class="btn button-secondary" routerLink="/autenticacao">Cancela</button>
-      <button type="button" class="btn button-primary">Confirma</button>
+      <button type="button" class="btn button-primary" (click)='createUsuario(usuario)'>Confirma</button>
     </div>
   </form>
 </section>
