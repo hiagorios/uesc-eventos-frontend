@@ -2,7 +2,7 @@ import { Entity } from '../entity';
 
 export interface EventoFormDTO extends Entity {
   idEventoPai: number;
-  idOrganizador;
+  idOrganizador: number;
   nome: string;
   descricao: string;
   local: string;
