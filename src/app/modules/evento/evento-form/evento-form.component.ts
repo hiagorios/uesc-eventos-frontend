@@ -7,8 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MinistranteComponent } from './ministrante/ministrante.component';
 import { Ministrante } from 'src/app/model/ministrante';
 import { EventoDTO } from 'src/app/model/dto/evento-dto';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/components/snackbar/snackbar.component';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-evento-form',
@@ -23,8 +24,6 @@ export class EventoFormComponent implements OnInit {
   ministrantes: Ministrante[];
   eventos: EventoDTO[];
 
-  durationInSeconds = 5;
-
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
@@ -32,16 +31,13 @@ export class EventoFormComponent implements OnInit {
     private router: Router,
     private eventoService: EventoService,
     private ministranteService: MinistranteService,
-    private _snackBar: MatSnackBar
+    private snackbar: SnackbarService
   ) { }
 
   ngOnInit(): void {
-    this.ministranteService.findAll().subscribe(ministrantes => {
-      this.ministrantes = ministrantes;
-    });
-    this.eventoService.findAll().subscribe(eventos => {
-      this.eventos = eventos;
-    });
+
+    this.buscarMinistrantes();
+    this.buscarEventos();
 
     this.inicializarForm();
     this.route.paramMap.subscribe(params => {
@@ -57,18 +53,16 @@ export class EventoFormComponent implements OnInit {
   salvar(): void {
     if (this.eventoForm.valid) {
       this.converterProps();
-      console.log(this.eventoForm.value);
       if (this.isEdicao) {
         // TODO: Edição
       } else {
         this.eventoService.create(this.eventoForm.value).subscribe(evento => {
-          console.log('Evento criado:');
-          console.log(evento);
+          this.snackbar.open('Evento criado!');
           this.router.navigate(['..']);
         });
       }
     } else {
-      this.openSnackBar();
+      this.snackbar.open('Preencha os campos necessários!');
     }
   }
 
@@ -92,7 +86,7 @@ export class EventoFormComponent implements OnInit {
 
   converterProps(): void {
     const controlPreco = this.eventoForm.get('preco');
-    if (controlPreco.value){
+    if (controlPreco.value) {
       controlPreco.setValue(Number(controlPreco.value.replace(',', '.')));
     } else {
       controlPreco.setValue(0);
@@ -105,15 +99,24 @@ export class EventoFormComponent implements OnInit {
       width: '500px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(idMinsitrante => {
+      if (idMinsitrante) {
+        this.eventoForm.get('idsMinistrantes').setValue([idMinsitrante]);
+        this.buscarMinistrantes();
+      }
     });
   }
 
-  openSnackBar() {
-    this._snackBar.openFromComponent(SnackbarComponent, {
-      duration: this.durationInSeconds * 1000,
+  buscarMinistrantes(): void {
+    this.ministranteService.findAll().subscribe(ministrantes => {
+      this.ministrantes = ministrantes;
     });
   }
-  
+
+  buscarEventos(): void {
+    this.eventoService.findAll().subscribe(eventos => {
+      this.eventos = eventos;
+    });
+  }
+
 }

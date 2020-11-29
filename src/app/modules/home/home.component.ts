@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.eventoService.findAllAvailable().subscribe(eventos => {
       this.eventos = eventos;
-      console.log(eventos);
     });
   }
 
@@ -34,7 +33,7 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
     });
   }
 

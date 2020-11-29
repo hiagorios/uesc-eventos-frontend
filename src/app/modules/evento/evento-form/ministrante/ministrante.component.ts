@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { SnackbarComponent } from 'src/app/components/snackbar/snackbar.component';
 import { MinistranteService } from 'src/app/services/ministrante.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-ministrante',
@@ -15,11 +13,12 @@ export class MinistranteComponent implements OnInit {
   ministranteForm: FormGroup;
   durationInSeconds = 5;
 
-  constructor(private fb: FormBuilder,
-    public dialogRef: MatDialogRef<MinistranteComponent>, 
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<MinistranteComponent>,
     private service: MinistranteService,
-    private router: Router,
-    private _snackBar: MatSnackBar) {
+    private snackbar: SnackbarService
+  ) {
     dialogRef.disableClose = false;
   }
 
@@ -28,15 +27,15 @@ export class MinistranteComponent implements OnInit {
   }
 
   salvar(): void {
-    if (this.ministranteForm.valid){
-      console.log(this.ministranteForm.value);
+    if (this.ministranteForm.valid) {
       this.service.create(this.ministranteForm.value).subscribe(ministrante => {
-        console.log('Ministrante criado:');
-        console.log(ministrante);
-        this.router.navigate(['..']);
+        this.snackbar.open('Ministrante criado!');
+        this.dialogRef.close(ministrante.id);
+      }, error => {
+        this.snackbar.open('Erro ao criar ministrante');
       });
     } else {
-      this.openSnackBar();
+      this.snackbar.open('Preencha os campos necessários!');
     }
   }
 
@@ -51,12 +50,6 @@ export class MinistranteComponent implements OnInit {
       email: ['', Validators.required],
       formacao: ['', Validators.required],
       instituicao: ['', Validators.required]
-    });
-  }
-
-  openSnackBar() {
-    this._snackBar.openFromComponent(SnackbarComponent, {
-      duration: this.durationInSeconds * 1000,
     });
   }
 }

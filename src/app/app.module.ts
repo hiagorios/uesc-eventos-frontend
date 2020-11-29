@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +19,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NgbModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: OWL_DATE_TIME_LOCALE, useValue: 'pt-BR' }

@@ -28,6 +28,7 @@
     "@uiowa/digit-only": "^2.2.1",
     "bootstrap": "^4.5.3",
     "ng-pick-datetime": "^7.0.0",
+    "ngx-mask": "^11.1.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.2"

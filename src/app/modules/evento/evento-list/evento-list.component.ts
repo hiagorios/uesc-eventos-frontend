@@ -1,3 +1,4 @@
+import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { EventoDTO } from '../../../model/dto/evento-dto';
 import { EventoService } from './../../../services/evento.service';
@@ -12,7 +13,8 @@ export class EventoListComponent implements OnInit {
   eventos: EventoDTO[];
 
   constructor(
-    private service: EventoService
+    private service: EventoService,
+    private snackbar: SnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -23,10 +25,10 @@ export class EventoListComponent implements OnInit {
     const remove = confirm(`Delete ${evento.nome}?`);
     if (remove) {
       this.service.delete(evento.id).subscribe(() => {
-        console.log('Evento deleted!');
+        this.snackbar.open('Evento deletado!');
         this.refreshList();
       }, error => {
-        alert('Could not delete Evento');
+        this.snackbar.open('Não foi possível deletar o Evento');
       });
     }
   }
