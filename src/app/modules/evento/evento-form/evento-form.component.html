@@ -4,7 +4,7 @@
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
-        placeholder="Dê um bom nome ao seu evento!">
+        placeholder="Dê um bom nome ao seu evento!" >
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -12,7 +12,7 @@
         <div class="form-row align-items-center">
           <div class="col-8">
             <select multiple formControlName="idsMinistrantes" class="custom-select mr-sm-2" id="selectMinistrante">
-              <option selected>Escolher...</option>
+              <option selected >Escolher...</option>
               <option *ngFor="let m of ministrantes" [ngValue]="m.id">{{ m.nome }}</option>
             </select>
           </div>
@@ -34,7 +34,7 @@
         Início do evento
         <div class="w-100"></div>
         <input [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
-          placeholder="Data inicial" formControlName="inicio">
+        placeholder="Data inicial" formControlName="inicio">
         <owl-date-time #dtInicio panelClass="app-datepicker"></owl-date-time>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3 mt-sm-0">
@@ -77,7 +77,7 @@
       <div class="form-group col-md-6">
         <label for="inputQtdVagas">Quantidade de vagas</label>
         <input class="form-control" formControlName="qtdVagas" id="inputQtdVagas"
-          placeholder="Insira a quantidade de vagas" digitOnly maxlength="4">
+        placeholder="Insira a quantidade de vagas" digitOnly maxlength="4">
       </div>
     </div>
     <button class="btn button-primary">Cadastrar evento</button>

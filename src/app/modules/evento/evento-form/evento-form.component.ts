@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MinistranteComponent } from './ministrante/ministrante.component';
 import { Ministrante } from 'src/app/model/ministrante';
 import { EventoDTO } from 'src/app/model/dto/evento-dto';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { SnackbarComponent } from 'src/app/components/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-evento-form',
@@ -21,13 +23,16 @@ export class EventoFormComponent implements OnInit {
   ministrantes: Ministrante[];
   eventos: EventoDTO[];
 
+  durationInSeconds = 5;
+
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private eventoService: EventoService,
-    private ministranteService: MinistranteService
+    private ministranteService: MinistranteService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -63,8 +68,7 @@ export class EventoFormComponent implements OnInit {
         });
       }
     } else {
-      // TODO: usar snackbar ou algo mais bonito
-      alert('Preencha os campos necessários');
+      this.openSnackBar();
     }
   }
 
@@ -106,4 +110,10 @@ export class EventoFormComponent implements OnInit {
     });
   }
 
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+  
 }
