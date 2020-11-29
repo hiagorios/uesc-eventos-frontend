@@ -21,7 +21,7 @@ export abstract class BaseService<ListDTO extends Entity, CreateDTO, UpdateDTO e
 
   create(entity: CreateDTO): Observable<ListDTO> {
     return this.http.post<ListDTO>(
-      this.createUrl([this.endpoint]),
+      this.createUrl([this.endpoint, 'storeDto']),
       entity
     );
   }
@@ -38,8 +38,7 @@ export abstract class BaseService<ListDTO extends Entity, CreateDTO, UpdateDTO e
       `${environment.springboot.baseURL}/${this.endpoint}/${id}`
     );
   }
-
-  createUrl(segments: string[], baseURL: string = environment.springboot.baseURL): string {
+  protected createUrl(segments: string[], baseURL: string = environment.springboot.baseURL): string {
     return baseURL.concat('/').concat(segments.join('/'));
   }
 }

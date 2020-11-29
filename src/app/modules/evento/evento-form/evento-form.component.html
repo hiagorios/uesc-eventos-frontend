@@ -1,9 +1,9 @@
 <section>
-  <form class="evento-form mx-md-0 mx-2 mt-4 card p-4">
-    <h2>Criar evento</h2>
+  <form [formGroup]="eventoForm" (ngSubmit)="salvar()" class="evento-form mx-md-0 mx-2 mt-4 card p-4">
+    <h2>{{isEdicao ? 'Editar evento' : 'Criar evento'}}</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp"
+      <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
         placeholder="Dê um bom nome ao seu evento!" >
     </div>
     <div class="form-row">
@@ -11,9 +11,9 @@
         <label for="selectMinistrante">Ministrante</label>
         <div class="form-row align-items-center">
           <div class="col-8">
-            <select multiple class="custom-select mr-sm-2" id="selectMinistrante" *ngFor="let ministrante of ministrantes">
+            <select multiple formControlName="idsMinistrantes" class="custom-select mr-sm-2" id="selectMinistrante">
               <option selected >Escolher...</option>
-              <option >{{ministrante.nome}}</option>
+              <option *ngFor="let m of ministrantes" [ngValue]="m.id">{{ m.nome }}</option>
             </select>
           </div>
           <div class="col-4">
@@ -23,9 +23,9 @@
       </div>
       <div class="form-group col-md-6">
         <label for="selectEventoPai">Evento Pai</label>
-        <select class="form-control" id="selectEventoPai" >
-          <option>Nenhum</option>
-          <option >Evento1</option>
+        <select formControlName="idEventoPai" class="form-control" id="selectEventoPai">
+          <option selected>Nenhum</option>
+          <option *ngFor="let e of eventos" [ngValue]="e.id">{{ e.nome }}</option>
         </select>
       </div>
     </div>
@@ -33,53 +33,54 @@
       <div class="col-12 col-sm-6 col-md-6">
         Início do evento
         <div class="w-100"></div>
-        <input [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio"
-          class="form-control" readonly placeholder="Data inicial">
+        <input [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
+        placeholder="Data inicial" formControlName="inicio">
         <owl-date-time #dtInicio panelClass="app-datepicker"></owl-date-time>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3 mt-sm-0">
         Início das inscrições
         <div class="w-100"></div>
-        <input [owlDateTimeTrigger]="dtInicioInscricao" [owlDateTime]="dtInicioInscricao"
-          class="form-control" readonly placeholder="Início das inscrições" >
+        <input [owlDateTimeTrigger]="dtInicioInscricao" [owlDateTime]="dtInicioInscricao" class="form-control" readonly
+          placeholder="Início das inscrições" formControlName="inicioInscricoes">
         <owl-date-time #dtInicioInscricao panelClass="app-datepicker"></owl-date-time>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3">
         Fim do evento
         <div class="w-100"></div>
-        <input [owlDateTimeTrigger]="dtFim" [owlDateTime]="dtFim" class="form-control"
-          readonly placeholder="Fim do evento">
+        <input [owlDateTimeTrigger]="dtFim" [owlDateTime]="dtFim" class="form-control" readonly
+          placeholder="Fim do evento" formControlName="fim">
         <owl-date-time #dtFim panelClass="app-datepicker"></owl-date-time>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3">
         Fim das inscrições
         <div class="w-100"></div>
-        <input [owlDateTimeTrigger]="dtFimIscricao" [owlDateTime]="dtFimIscricao"
-          class="form-control" readonly placeholder="Fim das inscrições" >
+        <input [owlDateTimeTrigger]="dtFimIscricao" [owlDateTime]="dtFimIscricao" class="form-control" readonly
+          placeholder="Fim das inscrições" formControlName="fimInscricoes">
         <owl-date-time #dtFimIscricao panelClass="app-datepicker"></owl-date-time>
       </div>
     </div>
     <div class="form-group mt-3">
       <label for="taDescricao">Descrição</label>
-      <textarea class="form-control" id="taDescricao" rows="3"
+      <textarea class="form-control" formControlName="descricao" id="taDescricao" rows="3"
         placeholder="Descreva seu evento e deixe ele mais atrativo!"></textarea>
     </div>
     <div class="form-group">
       <label for="inputLocal">Local</label>
-      <input class="form-control" id="inputLocal" placeholder="Onde seu evento irá ocorrer?" >
+      <input class="form-control" formControlName="local" id="inputLocal" placeholder="Onde seu evento irá ocorrer?">
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputPreco">Preço</label>
-        <input class="form-control" id="inputPreco" placeholder="Insira o preço" formControlName="preco">
+        <input class="form-control" formControlName="preco" id="inputPreco" digitOnly decimal="true"
+          decimalSeparator="," placeholder="0,00">
       </div>
       <div class="form-group col-md-6">
         <label for="inputQtdVagas">Quantidade de vagas</label>
-        <input class="form-control" id="inputQtdVagas" placeholder="Insira a quantidade de vagas"
-          formControlName="qtd_vagas">
+        <input class="form-control" formControlName="qtdVagas" id="inputQtdVagas"
+        placeholder="Insira a quantidade de vagas" digitOnly maxlength="4">
       </div>
     </div>
-    <button type="button" class="btn button-primary" (click)="createEvento(evento)">Cadastrar evento</button>
+    <button class="btn button-primary">Cadastrar evento</button>
   </form>
 
 </section>

@@ -1,10 +1,14 @@
+import { MinistranteService } from './../../../services/ministrante.service';
+import { EventoService } from './../../../services/evento.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { EventoDTO } from 'src/app/model/dto/evento-dto';
-import { EventoFormDTO } from 'src/app/model/dto/evento-form-dto';
-import { MinistranteDTO } from 'src/app/model/dto/ministrante-dto';
-import { EventoService } from 'src/app/services/evento.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MinistranteComponent } from './ministrante/ministrante.component';
+import { Ministrante } from 'src/app/model/ministrante';
+import { EventoDTO } from 'src/app/model/dto/evento-dto';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { SnackbarComponent } from 'src/app/components/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-evento-form',
@@ -12,15 +16,85 @@ import { MinistranteComponent } from './ministrante/ministrante.component';
   styleUrls: ['./evento-form.component.scss']
 })
 export class EventoFormComponent implements OnInit {
-  
-  evento: EventoFormDTO;
-  eventos: EventoDTO[];
-  ministrantes: MinistranteDTO[];
-  ministrantesEscohidos: number[];
 
-  constructor(public dialog: MatDialog, private service: EventoService) { }
+  isEdicao = false;
+  eventoForm: FormGroup;
+
+  ministrantes: Ministrante[];
+  eventos: EventoDTO[];
+
+  durationInSeconds = 5;
+
+  constructor(
+    public dialog: MatDialog,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private eventoService: EventoService,
+    private ministranteService: MinistranteService
+  ) { }
 
   ngOnInit(): void {
+    this.ministranteService.findAll().subscribe(ministrantes => {
+      this.ministrantes = ministrantes;
+    });
+    this.eventoService.findAll().subscribe(eventos => {
+      this.eventos = eventos;
+    });
+
+    this.inicializarForm();
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.isEdicao = true;
+        this.eventoService.findById(Number(params.get('id'))).subscribe(evento => {
+          this.eventoForm.patchValue(evento);
+        });
+      }
+    });
+  }
+
+  salvar(): void {
+    if (this.eventoForm.valid) {
+      this.converterProps();
+      console.log(this.eventoForm.value);
+      if (this.isEdicao) {
+        // TODO: Edição
+      } else {
+        this.eventoService.create(this.eventoForm.value).subscribe(evento => {
+          console.log('Evento criado:');
+          console.log(evento);
+          this.router.navigate(['..']);
+        });
+      }
+    } else {
+    }
+  }
+
+  inicializarForm(): void {
+    this.eventoForm = this.fb.group({
+      id: undefined,
+      nome: ['', Validators.required],
+      descricao: ['', Validators.required],
+      local: ['', Validators.required],
+      preco: undefined,
+      qtdVagas: [undefined, Validators.required],
+      idEventoPai: undefined,
+      idOrganizador: undefined,
+      inicio: [new Date(), Validators.required],
+      fim: [new Date(), Validators.required],
+      inicioInscricoes: [new Date(), Validators.required],
+      fimInscricoes: [new Date(), Validators.required],
+      idsMinistrantes: [[], Validators.required]
+    });
+  }
+
+  converterProps(): void {
+    const controlPreco = this.eventoForm.get('preco');
+    if (controlPreco.value){
+      controlPreco.setValue(Number(controlPreco.value.replace(',', '.')));
+    } else {
+      controlPreco.setValue(0);
+    }
   }
 
   openDialog(): void {
@@ -32,16 +106,6 @@ export class EventoFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }
-  createEvento(evento: EventoFormDTO): void{
-    this.service.create(evento).subscribe(() => {
-      console.log('Evento created!');
-    }, error => {
-      alert('Could not create this Evento');
-    });
-  }
-  chooseMinistrante(ministranteId: number): void{
-    this.ministrantesEscohidos.push(ministranteId)
   }
   
 }

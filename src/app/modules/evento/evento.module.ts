@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
+import { DigitOnlyModule } from '@uiowa/digit-only';
 import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { DatePickerIntl } from 'src/app/utils/DatePickerIntl';
 import { EventoFormComponent } from './evento-form/evento-form.component';
 import { MinistranteComponent } from './evento-form/ministrante/ministrante.component';
 import { EventoListComponent } from './evento-list/evento-list.component';
+
 
 const routes: Routes = [
   { path: '', component: EventoListComponent },
@@ -22,7 +25,10 @@ const routes: Routes = [
     MatDialogModule,
     RouterModule.forChild(routes),
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    ReactiveFormsModule,
+    FormsModule,
+    DigitOnlyModule
   ],
   exports: [
     RouterModule

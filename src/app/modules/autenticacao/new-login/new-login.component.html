@@ -1,29 +1,25 @@
 <section class="create-evento-page d-flex justify-content-center align-items-center h-100">
-  <form class="new-login-form mt-4 card p-4">
+  <form [formGroup]="userForm" (ngSubmit)="salvar()"class="new-login-form mt-4 card p-4">
     <h2>Novo Usuário</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value="{{nome}}">
+      <input type="email" class="form-control" formControlName="nome" id="inputNome" aria-describedby="nomeHelp">
     </div>
     <div class="form-group">
-      <label for="inputNome">Sobrenome</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value="{{sobrenome}}">
+      <label for="inputEmail">E-mail</label>
+      <input type="email" class="form-control" formControlName="email" id="inputEmail" aria-describedby="nomeHelp">
     </div>
     <div class="form-group">
-      <label for="inputNome">E-mail</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp"value = "{{usuario.email}}">
+      <label for="inputSenha">Senha</label>
+      <input type="email" class="form-control" formControlName="senha" id="inputSenha" aria-describedby="nomeHelp" value = "{{senha1}}">
     </div>
     <div class="form-group">
-      <label for="inputNome">Senha</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value = "{{senha1}}">
-    </div>
-    <div class="form-group">
-      <label for="inputNome">Confirma Senha</label>
-      <input type="email" class="form-control" id="inputNome" aria-describedby="nomeHelp" value = "{{senha2}}">
+      <label for="inputConf">Confirma Senha</label>
+      <input type="email" class="form-control" id="inputConf" aria-describedby="nomeHelp" value = "{{senha2}}">
     </div>
     <div class="d-flex justify-content-between">
       <button type="button" class="btn button-secondary" routerLink="/autenticacao">Cancela</button>
-      <button type="button" class="btn button-primary" (click)='createUsuario(usuario)'>Confirma</button>
+      <button type="button" class="btn button-primary" (click)='salvar()'>Confirma</button>
     </div>
   </form>
 </section>
