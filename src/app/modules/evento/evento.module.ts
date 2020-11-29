@@ -9,6 +9,8 @@ import { DatePickerIntl } from 'src/app/utils/DatePickerIntl';
 import { EventoFormComponent } from './evento-form/evento-form.component';
 import { MinistranteComponent } from './evento-form/ministrante/ministrante.component';
 import { EventoListComponent } from './evento-list/evento-list.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 
 const routes: Routes = [
@@ -28,7 +30,8 @@ const routes: Routes = [
     OwlNativeDateTimeModule,
     ReactiveFormsModule,
     FormsModule,
-    DigitOnlyModule
+    DigitOnlyModule,
+    MatSnackBar
   ],
   exports: [
     RouterModule

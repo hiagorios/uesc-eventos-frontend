@@ -31,7 +31,8 @@ export class EventoFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private eventoService: EventoService,
-    private ministranteService: MinistranteService
+    private ministranteService: MinistranteService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +68,7 @@ export class EventoFormComponent implements OnInit {
         });
       }
     } else {
+      this.openSnackBar();
     }
   }
 
@@ -105,6 +107,12 @@ export class EventoFormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+    });
+  }
+
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: this.durationInSeconds * 1000,
     });
   }
   
