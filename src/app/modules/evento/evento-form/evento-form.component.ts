@@ -18,7 +18,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class EventoFormComponent implements OnInit {
 
-  isEdicao = false;
+  idEdicao: number;
   eventoForm: FormGroup;
 
   ministrantes: Ministrante[];
@@ -35,26 +35,30 @@ export class EventoFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.buscarMinistrantes();
-    this.buscarEventos();
-
     this.inicializarForm();
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) {
-        this.isEdicao = true;
-        this.eventoService.findById(Number(params.get('id'))).subscribe(evento => {
+        this.idEdicao = Number(params.get('id'));
+        this.eventoService.findFormDto(Number(params.get('id'))).subscribe(evento => {
+          console.log(evento);
           this.eventoForm.patchValue(evento);
+          console.log(this.eventoForm);
         });
       }
     });
+
+    this.buscarMinistrantes();
+    this.buscarEventos();
   }
 
   salvar(): void {
     if (this.eventoForm.valid) {
       this.converterProps();
-      if (this.isEdicao) {
-        // TODO: Edição
+      if (this.idEdicao) {
+        this.eventoService.update(this.eventoForm.value).subscribe(evento => {
+          this.snackbar.open('Evento atualizado!');
+          this.router.navigate(['..']);
+        });
       } else {
         this.eventoService.create(this.eventoForm.value).subscribe(evento => {
           this.snackbar.open('Evento criado!');
@@ -86,10 +90,15 @@ export class EventoFormComponent implements OnInit {
 
   converterProps(): void {
     const controlPreco = this.eventoForm.get('preco');
-    if (controlPreco.value) {
-      controlPreco.setValue(Number(controlPreco.value.replace(',', '.')));
+    if (typeof controlPreco.value === 'string') {
+      console.log('convertendo');
+      if (controlPreco.value) {
+        controlPreco.setValue(Number(controlPreco.value.replace(',', '.')));
+      } else {
+        controlPreco.setValue(0);
+      }
     } else {
-      controlPreco.setValue(0);
+      console.log('nao precisou');
     }
   }
 
@@ -114,9 +123,8 @@ export class EventoFormComponent implements OnInit {
   }
 
   buscarEventos(): void {
-    this.eventoService.findAll().subscribe(eventos => {
+    this.eventoService.findAllDto(this.idEdicao).subscribe(eventos => {
       this.eventos = eventos;
     });
   }
-
 }

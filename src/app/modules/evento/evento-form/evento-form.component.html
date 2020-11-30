@@ -1,6 +1,6 @@
 <section>
   <form [formGroup]="eventoForm" (ngSubmit)="salvar()" class="evento-form mx-md-0 mx-2 mt-4 card p-4">
-    <h2>{{isEdicao ? 'Editar evento' : 'Criar evento'}}</h2>
+    <h2>{{idEdicao ? 'Editar evento' : 'Criar evento'}}</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
@@ -24,7 +24,7 @@
       <div class="form-group col-md-6">
         <label for="selectEventoPai">Evento Pai</label>
         <select formControlName="idEventoPai" class="form-control" id="selectEventoPai">
-          <option selected>Nenhum</option>
+          <option selected [ngValue]="null">Nenhum</option>
           <option *ngFor="let e of eventos" [ngValue]="e.id">{{ e.nome }}</option>
         </select>
       </div>
@@ -80,7 +80,7 @@
         placeholder="Insira a quantidade de vagas" digitOnly maxlength="4">
       </div>
     </div>
-    <button class="btn button-primary">Cadastrar evento</button>
+    <button class="btn button-primary">Salvar</button>
   </form>
 
 </section>
