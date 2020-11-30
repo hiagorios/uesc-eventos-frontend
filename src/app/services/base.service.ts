@@ -28,7 +28,7 @@ export abstract class BaseService<ListDTO extends Entity, CreateDTO, UpdateDTO e
 
   update(entity: UpdateDTO): Observable<ListDTO> {
     return this.http.put<ListDTO>(
-      this.createUrl([this.endpoint, entity.id.toString()]),
+      this.createUrl([this.endpoint, 'updateDto', entity.id.toString()]),
       entity
     );
   }
