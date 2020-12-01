@@ -1,0 +1,81 @@
+<section class="evento-list-page d-flex justify-content-center align-items-center h-100">
+  <div class="card p-4 mt-4">
+    <div class="d-flex justify-content-between">
+      <h2>Todos os usuários</h2>
+      <button type="button" class="btn btn-primary" routerLink="new">
+        <em class="fas fa-plus"></em> Criar
+      </button>
+    </div>
+    <table class="table w-100 mt-4 card-body">
+      <caption *ngIf="!usuarios || usuarios.length == 0">
+        Nenhum usuario cadastrado
+      </caption>
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="text-center">Nome</th>
+          <th scope="col" class="text-center">Email</th>
+          <th scope="col" class="text-center">Tipo</th>
+          <th scope="col" class="text-center">CPF</th>
+          <th class="text-center" scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td class="text-center">{{usuario.nome}}</td>
+          <td class="text-center">{{usuario.email}}</td>
+          <td class="text-center" [ngSwitch]="usuario.tipoUsuario">
+            <span *ngSwitchCase="'A'" class="badge color-primary">Administrador</span>
+            <span *ngSwitchCase="'O'" class="badge color-secondary">Organizador</span>
+            <span *ngSwitchCase="'P'" class="badge color-tertiary">Participante</span>
+          </td>
+          <td class="text-center">{{usuario.cpf}}</td>
+          <td class="d-flex justify-content-around">
+            <button type="button" class="btn btn-light mr-1" [routerLink]="['edit', usuario.id]">
+              <em class="fas fa-edit"></em> Editar
+            </button>
+            <button type="button" class="btn btn-light" (click)="deleteUsuario(usuario)">
+              <em class="far fa-trash-alt"></em> Remover
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="usuarios && usuarios.length > 0; else nenhumUsuario" class="list-group-wrapper">
+      <ul *ngFor="let usuario of usuarios" class="list-group mt-3">
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Nome</div>
+          <div>{{usuario.nome}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Email</div>
+          <div>{{usuario.email}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Tipo</div>
+          <div [ngSwitch]="usuario.tipoUsuario">
+            <span *ngSwitchCase="'A'" class="badge color-primary">Administrador</span>
+            <span *ngSwitchCase="'O'" class="badge color-secondary">Organizador</span>
+            <span *ngSwitchCase="'P'" class="badge color-tertiary">Participante</span>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">CPF</div>
+          <div>{{usuario.cpf}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Ações</div>
+          <div>
+            <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
+            <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #nenhumUsuario>
+      <p class="msg-nenhum-usuario">
+        Nenhum usuário cadastrado
+      </p>
+    </ng-template>
+  </div>
+</section>
