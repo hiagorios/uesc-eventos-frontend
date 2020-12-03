@@ -13,6 +13,7 @@ export interface EventoListDTO extends Entity {
   local: string;
   preco: number;
   qtdVagas: number;
+  vagasRestantes: number;
   inicioInscricoes: Date;
   fimInscricoes: Date;
 }

@@ -1,4 +1,3 @@
-import { PipesModule } from './../../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,7 +29,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     ComponentsModule,
-    PipesModule,
     DigitOnlyModule
   ],
   exports: [
