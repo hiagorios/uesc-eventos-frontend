@@ -1,15 +1,14 @@
-import { MinistranteService } from './../../../services/ministrante.service';
-import { EventoService } from './../../../services/evento.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MinistranteComponent } from './ministrante/ministrante.component';
-import { Ministrante } from 'src/app/model/ministrante';
 import { EventoDTO } from 'src/app/model/dto/evento-dto';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarComponent } from 'src/app/components/snackbar/snackbar.component';
+import { Ministrante } from 'src/app/model/ministrante';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { EventoService } from './../../../services/evento.service';
+import { MinistranteService } from './../../../services/ministrante.service';
+import { MinistranteComponent } from './ministrante/ministrante.component';
 
 @Component({
   selector: 'app-evento-form',
@@ -31,7 +30,8 @@ export class EventoFormComponent implements OnInit {
     private router: Router,
     private eventoService: EventoService,
     private ministranteService: MinistranteService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -84,21 +84,19 @@ export class EventoFormComponent implements OnInit {
       fim: [new Date(), Validators.required],
       inicioInscricoes: [new Date(), Validators.required],
       fimInscricoes: [new Date(), Validators.required],
-      idsMinistrantes: [[], Validators.required]
+      idsMinistrantes: [[], Validators.required],
+      imagem: undefined
     });
   }
 
   converterProps(): void {
     const controlPreco = this.eventoForm.get('preco');
     if (typeof controlPreco.value === 'string') {
-      console.log('convertendo');
       if (controlPreco.value) {
         controlPreco.setValue(Number(controlPreco.value.replace(',', '.')));
       } else {
         controlPreco.setValue(0);
       }
-    } else {
-      console.log('nao precisou');
     }
   }
 
@@ -114,6 +112,14 @@ export class EventoFormComponent implements OnInit {
         this.buscarMinistrantes();
       }
     });
+  }
+
+  setImage(image: string): void {
+    this.eventoForm.get('imagem').setValue(image);
+  }
+
+  hasImage(): boolean {
+    return typeof this.eventoForm.get('imagem').value === 'string';
   }
 
   buscarMinistrantes(): void {

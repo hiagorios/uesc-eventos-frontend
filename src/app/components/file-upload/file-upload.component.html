@@ -1,0 +1,6 @@
+<input style="display: none" type="file" #fileInput accept="image/*" (change)="readFile($event.target.files)">
+<div class="btn-group w-100" role="group" aria-label="Basic example">
+  <button class="btn color-danger" *ngIf="file" (click)="removeFile()" type="button">Remover</button>
+  <button class="btn color-primary" type="button"
+    (click)="fileInput.click()">{{file ? 'Substituir' : 'Selecionar'}}</button>
+</div>
