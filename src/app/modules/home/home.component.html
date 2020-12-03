@@ -18,9 +18,9 @@
     </div>
   </div>
   <div class="cards-container row mx-lg-5 mx-3">
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xm-12 mb-2" *ngFor="let evento of eventos">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xm-12 mb-3" *ngFor="let evento of eventos">
       <div class="card h-100" (click)="openModalInscricao(evento)">
-        <img class="card-img-top" src="https://via.placeholder.com/512x256.png?text=Imagem+do+evento"
+        <img class="card-img-top" [src]="evento.imagem ? evento.imagem : 'https://via.placeholder.com/512x256.png?text=Imagem+do+evento'"
           alt="Imagem do evento">
         <div class="card-body">
           <h3 class="card-title">{{evento.nome}}</h3>

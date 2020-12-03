@@ -14,14 +14,16 @@
           <em class="fas fa-money-bill-wave"></em> Preço: {{evento.preco != 0 ? 'R$' + evento.preco : 'Gratuito'}}
         </p>
         <p>
-          <em class="fas fa-calendar-alt"></em> Data: {{evento.inicio | date: 'HH:mm dd/MM/yyyy' }} a {{evento.inicio | date: 'HH:mm dd/MM/yyyy' }}
+          <em class="fas fa-calendar-alt"></em> Data: {{evento.inicio | date: 'HH:mm dd/MM/yyyy' }} a
+          {{evento.inicio | date: 'HH:mm dd/MM/yyyy' }}
         </p>
         <p>
           <em class="fas fa-calendar-alt"></em> Inscrições até {{evento.fimInscricoes | date: 'HH:mm dd/MM/yyyy' }}
         </p>
       </div>
       <div class="col mt-3 mt-sm-3 mt-md-0">
-        <img class="card-img-top" src="https://via.placeholder.com/512x256.png?text=Imagem+do+evento"
+        <img class="card-img-top"
+          [src]="evento.imagem ? evento.imagem : 'https://via.placeholder.com/512x256.png?text=Imagem+do+evento'"
           alt="Imagem do evento">
       </div>
     </div>

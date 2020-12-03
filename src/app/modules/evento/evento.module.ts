@@ -1,3 +1,4 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { DatePickerIntl } from 'src/app/utils/DatePickerIntl';
+import { ComponentsModule } from './../../components/components.module';
 import { EventoFormComponent } from './evento-form/evento-form.component';
 import { MinistranteComponent } from './evento-form/ministrante/ministrante.component';
 import { EventoListComponent } from './evento-list/evento-list.component';
@@ -27,6 +29,8 @@ const routes: Routes = [
     OwlNativeDateTimeModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentsModule,
+    PipesModule,
     DigitOnlyModule
   ],
   exports: [

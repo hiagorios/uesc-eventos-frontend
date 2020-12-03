@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { EventoDTO } from './../../model/dto/evento-dto';
+import { EventoListDTO } from '../../model/dto/evento-list-dto';
 import { EventoService } from './../../services/evento.service';
 import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.component';
 
@@ -11,7 +11,7 @@ import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.compo
 })
 export class HomeComponent implements OnInit {
 
-  eventos: EventoDTO[] = [];
+  eventos: EventoListDTO[] = [];
 
   constructor(
     private eventoService: EventoService,
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  openModalInscricao(evento: EventoDTO): void {
+  openModalInscricao(evento: EventoListDTO): void {
     const dialogRef = this.dialog.open(ModalInscricaoComponent, {
       maxWidth: '900px',
       maxHeight: '90vh',

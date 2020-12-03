@@ -1,6 +1,6 @@
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Component, OnInit } from '@angular/core';
-import { EventoDTO } from '../../../model/dto/evento-dto';
+import { EventoListDTO } from '../../../model/dto/evento-list-dto';
 import { EventoService } from './../../../services/evento.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { EventoService } from './../../../services/evento.service';
 })
 export class EventoListComponent implements OnInit {
 
-  eventos: EventoDTO[];
+  eventos: EventoListDTO[];
 
   constructor(
     private service: EventoService,
@@ -21,7 +21,7 @@ export class EventoListComponent implements OnInit {
     this.refreshList();
   }
 
-  deleteEvento(evento: EventoDTO): void {
+  deleteEvento(evento: EventoListDTO): void {
     const remove = confirm(`Delete ${evento.nome}?`);
     if (remove) {
       this.service.delete(evento.id).subscribe(() => {

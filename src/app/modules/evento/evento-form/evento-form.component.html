@@ -1,25 +1,11 @@
 <section>
   <form [formGroup]="eventoForm" (ngSubmit)="salvar()" class="evento-form mx-md-0 mx-2 mt-4 card p-4">
     <h2>{{idEdicao ? 'Editar evento' : 'Criar evento'}}</h2>
-    <div class="form-group">
-      <label for="inputNome">Nome</label>
-      <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
-        placeholder="Dê um bom nome ao seu evento!" >
-    </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="selectMinistrante">Ministrante</label>
-        <div class="form-row align-items-center">
-          <div class="col-8">
-            <select multiple formControlName="idsMinistrantes" class="custom-select mr-sm-2" id="selectMinistrante">
-              <option selected >Escolher...</option>
-              <option *ngFor="let m of ministrantes" [ngValue]="m.id">{{ m.nome }}</option>
-            </select>
-          </div>
-          <div class="col-4">
-            <a (click)="openDialog()" class="btn button-primary">Novo</a>
-          </div>
-        </div>
+        <label for="inputNome">Nome</label>
+        <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
+          placeholder="Dê um bom nome ao seu evento!">
       </div>
       <div class="form-group col-md-6">
         <label for="selectEventoPai">Evento Pai</label>
@@ -29,12 +15,37 @@
         </select>
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="form-row mt-3">
+      <div class="form-group col-md-6">
+        <label for="selectMinistrante">Ministrantes</label>
+        <div class="form-row align-items-center">
+          <div class="col-8">
+            <select multiple formControlName="idsMinistrantes" class="custom-select mr-sm-2" id="selectMinistrante">
+              <option selected>Escolher...</option>
+              <option *ngFor="let m of ministrantes" [ngValue]="m.id">{{ m.nome }}</option>
+            </select>
+          </div>
+          <div class="col-4">
+            <a (click)="openDialog()" class="btn button-primary">Novo</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex flex-column">
+        <img class="w-100" *ngIf="hasImage(); else imageBox" [src]="this.eventoForm.get('imagem').value" />
+        <ng-template #imageBox>
+          <div id="imageBox" class="d-flex align-items-center justify-content-center h-100 color-light">
+            Imagem do evento
+          </div>
+        </ng-template>
+        <app-file-upload (fileChanged)="setImage($event)"></app-file-upload>
+      </div>
+    </div>
+    <div class="row mt-3">
       <div class="col-12 col-sm-6 col-md-6">
         Início do evento
         <div class="w-100"></div>
         <input [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
-        placeholder="Data inicial" formControlName="inicio">
+          placeholder="Data inicial" formControlName="inicio">
         <owl-date-time #dtInicio panelClass="app-datepicker"></owl-date-time>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3 mt-sm-0">
@@ -77,12 +88,12 @@
       <div class="form-group col-md-6">
         <label for="inputQtdVagas">Quantidade de vagas</label>
         <input class="form-control" formControlName="qtdVagas" id="inputQtdVagas"
-        placeholder="Insira a quantidade de vagas" digitOnly maxlength="4">
+          placeholder="Insira a quantidade de vagas" digitOnly maxlength="4">
       </div>
     </div>
     <div class="d-flex justify-content-between">
       <button type="button" class="btn button-secondary" routerLink="/eventos">Cancelar</button>
-      <button type="button" class="btn button-primary">Salvar</button>
+      <button type="submit" class="btn button-primary">Salvar</button>
     </div>
   </form>
 

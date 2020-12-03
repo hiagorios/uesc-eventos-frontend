@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EventoDTO } from './../../../model/dto/evento-dto';
+import { EventoListDTO } from '../../../model/dto/evento-list-dto';
 
 @Component({
   selector: 'app-modal-inscricao',
@@ -11,7 +11,7 @@ export class ModalInscricaoComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModalInscricaoComponent>,
-    @Inject(MAT_DIALOG_DATA) public evento: EventoDTO
+    @Inject(MAT_DIALOG_DATA) public evento: EventoListDTO
   ) { }
 
   ngOnInit(): void {
