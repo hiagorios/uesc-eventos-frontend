@@ -1,7 +1,7 @@
-<div class="app-modal-wrapper p-4">
+<div class="app-modal-wrapper p-4" *ngIf="evento">
   <h3 class="app-modal-header d-flex justify-content-between align-items-center">
     {{evento.nome}}
-    <span class="badge color-danger ml-auto">Vagas: {{evento.vagasRestantes}}/{{evento.qtdVagas}}</span>
+    <span [ngClass]="getBadgeColor()" class="badge ml-auto">Vagas restantes: {{evento.vagasRestantes}} de {{evento.qtdVagas}}</span>
   </h3>
   <hr />
   <div class="app-modal-content">
@@ -33,6 +33,6 @@
   </div>
   <div class="app-modal-footer d-flex justify-content-between mt-2">
     <button class="button-light" mat-dialog-close>Cancelar</button>
-    <button class="button-primary" mat-button (click)="onConfirm()">Inscrever-se</button>
+    <button class="button-primary" [disabled]="!temVagas()" mat-button (click)="inscrever()">Inscrever-se</button>
   </div>
 </div>

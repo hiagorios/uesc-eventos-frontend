@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalInscricaoComponent, {
       maxWidth: '900px',
       maxHeight: '90vh',
-      data: evento,
+      data: evento.id,
       panelClass: 'dialog-no-padding'
     });
 

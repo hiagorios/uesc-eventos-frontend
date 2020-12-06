@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventoFormDTO } from '../model/dto/evento-form-dto';
@@ -26,9 +26,9 @@ export class EventoService extends BaseService<EventoListDTO, EventoFormDTO, Eve
     );
   }
 
-  findDetailDto(id: number): Observable<EventoListDTO> {
+  findListDto(id: number): Observable<EventoListDTO> {
     return this.http.get<EventoListDTO>(
-      this.createUrl([this.endpoint, 'detailDto', id.toString()])
+      this.createUrl([this.endpoint, 'listDto', id.toString()])
     );
   }
 
@@ -39,6 +39,13 @@ export class EventoService extends BaseService<EventoListDTO, EventoFormDTO, Eve
     }
     return this.http.get<EventoListDTO[]>(
       this.createUrl([this.endpoint, 'allDto']), { params }
+    );
+  }
+
+  realizarInscricao(eventoId: number, usuarioId: number): Observable<HttpResponse<string>> {
+    return this.http.post<HttpResponse<string>>(
+      this.createUrl([this.endpoint, 'realizarInscricao', eventoId.toString(), usuarioId.toString()]),
+      undefined
     );
   }
 }
