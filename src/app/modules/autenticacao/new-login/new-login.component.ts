@@ -12,6 +12,7 @@ export class NewLoginComponent implements OnInit {
 
   userForm: FormGroup;
   durationInSeconds = 5;
+  tentouSalvar = false;
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +26,7 @@ export class NewLoginComponent implements OnInit {
   }
 
   salvar(): void {
+    this.tentouSalvar = true;
     if (this.userForm.valid) {
       if (this.confirmaSenha()) {
         this.service.create(this.userForm.value).subscribe(usuario => {

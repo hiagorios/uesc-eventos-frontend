@@ -4,18 +4,30 @@
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="text" class="form-control" formControlName="nome" id="inputNome">
+      <span class="text-danger"
+        *ngIf="(this.ministranteForm.controls.inputNome == null && this.tentouSalvar == true)">Este campo não pode ser
+        vazio.</span>
     </div>
     <div class="form-group">
       <label for="inputEmail">E-mail</label>
       <input type="text" class="form-control" formControlName="email" id="inputEmail">
+      <span class="text-danger"
+        *ngIf="(this.ministranteForm.controls.inputEmail == null && this.tentouSalvar == true)">Este campo não pode ser
+        vazio.</span>
     </div>
     <div class="form-group">
       <label for="taFormacao">Formação</label>
-      <textarea class="form-control" formControlName="formacao" id="taFormacao" rows="3" ></textarea>
+      <textarea class="form-control" formControlName="formacao" id="taFormacao" rows="3"></textarea>
+      <span class="text-danger"
+        *ngIf="(this.ministranteForm.controls.taFormacao == null && this.tentouSalvar == true)">Este campo não pode ser
+        vazio.</span>
     </div>
     <div class="form-group">
       <label for="inputInstituicao">Instituição</label>
       <input type="text" class="form-control" formControlName="instituicao" id="inputInstituicao">
+      <span class="text-danger"
+        *ngIf="(this.ministranteForm.controls.inputInstituicao == null && this.tentouSalvar == true)">Este campo não
+        pode ser vazio.</span>
     </div>
   </form>
 </div>
