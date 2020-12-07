@@ -23,6 +23,8 @@ export class EventoFormComponent implements OnInit {
   ministrantes: Ministrante[];
   eventos: EventoDTO[];
 
+  tentouSalvar = false;
+
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
@@ -52,6 +54,7 @@ export class EventoFormComponent implements OnInit {
   }
 
   salvar(): void {
+    this.tentouSalvar = true;
     if (this.eventoForm.valid) {
       this.converterProps();
       if (this.idEdicao) {

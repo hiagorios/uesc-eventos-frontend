@@ -12,6 +12,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class MinistranteComponent implements OnInit {
   ministranteForm: FormGroup;
   durationInSeconds = 5;
+  tentouSalvar = false;
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +28,7 @@ export class MinistranteComponent implements OnInit {
   }
 
   salvar(): void {
+    this.tentouSalvar = true;
     if (this.ministranteForm.valid) {
       this.service.create(this.ministranteForm.value).subscribe(ministrante => {
         this.snackbar.open('Ministrante criado!');

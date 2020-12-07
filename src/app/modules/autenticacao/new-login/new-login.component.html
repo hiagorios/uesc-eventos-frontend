@@ -1,25 +1,39 @@
 <section class="create-evento-page d-flex justify-content-center align-items-center h-100">
-  <form [formGroup]="userForm" (ngSubmit)="salvar()"class="new-login-form mt-4 card p-4">
+  <form [formGroup]="userForm" (ngSubmit)="salvar()" class="new-login-form mt-4 card p-4">
     <h2>Novo Usuário</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="text" class="form-control" formControlName="nome" id="inputNome">
+      <span class="text-danger" *ngIf="(this.userForm.controls.inputNome == null && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
     </div>
     <div class="form-group">
       <label for="inputEmail">E-mail</label>
       <input type="email" class="form-control" formControlName="email" id="inputEmail">
+      <span class="text-danger" *ngIf="(this.userForm.controls.email.errors.required && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
+      <span class="text-danger" *ngIf="(this.userForm.controls.email.errors.email && this.tentouSalvar == true)">Preencha com
+        um email válido.</span>
     </div>
     <div class="form-group">
       <label for="inputCPF">CPF</label>
       <input type="text" class="form-control" formControlName="cpf" id="inputCPF" mask="000.000.000-00">
+      <span class="text-danger" *ngIf="(this.userForm.controls.cpf.errors.required && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
+      <span class="text-danger" *ngIf="(this.userForm.controls.cpf.errors.minlength && this.tentouSalvar == true)">O CPF deve ser
+        preenchido com 11 números.</span>
     </div>
     <div class="form-group">
       <label for="inputSenha">Senha</label>
       <input type="password" class="form-control" formControlName="senha" id="inputSenha">
+      <span class="text-danger" *ngIf="(this.userForm.controls.inputSenha== null && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
     </div>
     <div class="form-group">
       <label for="inputConf">Confirma Senha</label>
       <input type="password" class="form-control" id="inputConf" formControlName="confirmaSenha">
+      <span class="text-danger" *ngIf="(this.userForm.controls.inputConf == null && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
     </div>
     <div class="d-flex justify-content-between">
       <button type="button" class="btn button-secondary" routerLink="/usuarios">Cancelar</button>

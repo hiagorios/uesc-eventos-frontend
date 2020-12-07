@@ -6,6 +6,8 @@
         <label for="inputNome">Nome</label>
         <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
           placeholder="Dê um bom nome ao seu evento!">
+        <span class="text-danger" *ngIf="(this.eventoForm.controls.inputNome == null && this.tentouSalvar == true)">Este
+          campo não pode ser vazio.</span>
       </div>
       <div class="form-group col-md-6">
         <label for="selectEventoPai">Evento Pai</label>
@@ -29,6 +31,10 @@
             <a (click)="openDialog()" class="btn button-primary">Novo</a>
           </div>
         </div>
+        <span class="text-danger"
+          *ngIf="(this.eventoForm.controls.selectMinistrante == null && this.tentouSalvar == true)">Selecione ao menos
+          um
+          ministrante.</span>
       </div>
       <div class="col-md-6 d-flex flex-column">
         <img class="w-100" *ngIf="hasImage(); else imageBox" [src]="this.eventoForm.get('imagem').value" />
@@ -45,39 +51,53 @@
         Início do evento
         <div class="w-100"></div>
         <input [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
-          placeholder="Data inicial" formControlName="inicio">
+          placeholder="Data inicial" formControlName="inicio" id="inicio">
         <owl-date-time #dtInicio panelClass="app-datepicker"></owl-date-time>
+        <span class="text-danger" *ngIf="(this.eventoForm.controls.inicio == null && this.tentouSalvar == true)">Este
+          campo não pode ser vazio.</span>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3 mt-sm-0">
         Início das inscrições
         <div class="w-100"></div>
         <input [owlDateTimeTrigger]="dtInicioInscricao" [owlDateTime]="dtInicioInscricao" class="form-control" readonly
-          placeholder="Início das inscrições" formControlName="inicioInscricoes">
+          placeholder="Início das inscrições" formControlName="inicioInscricoes" id="inicioInscricoes">
         <owl-date-time #dtInicioInscricao panelClass="app-datepicker"></owl-date-time>
+        <span class="text-danger"
+          *ngIf="(this.eventoForm.controls.inicioInscricoes == null && this.tentouSalvar == true)">Este
+          campo não pode ser vazio.</span>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3">
         Fim do evento
         <div class="w-100"></div>
         <input [owlDateTimeTrigger]="dtFim" [owlDateTime]="dtFim" class="form-control" readonly
-          placeholder="Fim do evento" formControlName="fim">
+          placeholder="Fim do evento" formControlName="fim" id="fim">
         <owl-date-time #dtFim panelClass="app-datepicker"></owl-date-time>
+        <span class="text-danger" *ngIf="(this.eventoForm.controls.fim == null && this.tentouSalvar == true)">Este campo
+          não pode ser vazio.</span>
       </div>
       <div class="col-12 col-sm-6 col-md-6 mt-3">
         Fim das inscrições
         <div class="w-100"></div>
         <input [owlDateTimeTrigger]="dtFimIscricao" [owlDateTime]="dtFimIscricao" class="form-control" readonly
-          placeholder="Fim das inscrições" formControlName="fimInscricoes">
+          placeholder="Fim das inscrições" formControlName="fimInscricoes" id="fimInscricoes">
         <owl-date-time #dtFimIscricao panelClass="app-datepicker"></owl-date-time>
+        <span class="text-danger"
+          *ngIf="(this.eventoForm.controls.fimInscricoes == null && this.tentouSalvar == true)">Este campo não pode ser
+          vazio.</span>
       </div>
     </div>
     <div class="form-group mt-3">
       <label for="taDescricao">Descrição</label>
       <textarea class="form-control" formControlName="descricao" id="taDescricao" rows="3"
         placeholder="Descreva seu evento e deixe ele mais atrativo!"></textarea>
+      <span class="text-danger" *ngIf="(this.eventoForm.controls.taDescricao == null && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
     </div>
     <div class="form-group">
       <label for="inputLocal">Local</label>
       <input class="form-control" formControlName="local" id="inputLocal" placeholder="Onde seu evento irá ocorrer?">
+      <span class="text-danger" *ngIf="(this.eventoForm.controls.inputLocal == null && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -89,6 +109,9 @@
         <label for="inputQtdVagas">Quantidade de vagas</label>
         <input class="form-control" formControlName="qtdVagas" id="inputQtdVagas"
           placeholder="Insira a quantidade de vagas" digitOnly maxlength="4">
+        <span class="text-danger"
+          *ngIf="(this.eventoForm.controls.inputQtdVagas == null && this.tentouSalvar == true)">Este campo não pode ser
+          vazio.</span>
       </div>
     </div>
     <div class="d-flex justify-content-between">
