@@ -6,7 +6,11 @@ export const environment = {
   production: false,
   springboot: {
     baseURL: 'http://localhost:8080'
-  }
+  },
+  storage: {
+    accessTokenKey: 'JWT'
+  },
+  loginPage: '/usuarios/login'
 };
 
 /*

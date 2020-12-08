@@ -2,7 +2,7 @@
   <div class="card p-4 mt-4">
     <div class="d-flex justify-content-between">
       <h2>Todos os eventos</h2>
-      <button type="button" class="btn btn-primary" routerLink="new">
+      <button *hasPermission="'CRIAR_EVENTO'" type="button" class="btn btn-primary" routerLink="new">
         <em class="fas fa-plus"></em> Criar
       </button>
     </div>
@@ -18,7 +18,7 @@
           <th scope="col" class="text-center">Vagas</th>
           <th scope="col" class="text-center">Inicio</th>
           <th scope="col" class="text-center">Fim</th>
-          <th class="text-center" scope="col">Ações</th>
+          <th *hasAnyPermission="['EDITAR_EVENTO', 'DELETAR_EVENTO']" class="text-center" scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -29,11 +29,11 @@
           <td class="text-center">{{evento.qtdVagas}}</td>
           <td class="text-center">{{evento.inicio | date: 'HH:mm dd/MM/yyyy' }}</td>
           <td class="text-center">{{evento.fim | date: 'HH:mm dd/MM/yyyy' }}</td>
-          <td class="d-flex justify-content-around">
-            <button type="button" class="btn btn-light mr-1" [routerLink]="['edit', evento.id]">
+          <td *hasAnyPermission="['EDITAR_EVENTO', 'DELETAR_EVENTO']" class="d-flex justify-content-around">
+            <button *hasPermission="'EDITAR_EVENTO'" type="button" class="btn btn-light mr-1" [routerLink]="['edit', evento.id]">
               <em class="fas fa-edit"></em> Editar
             </button>
-            <button type="button" class="btn btn-light" (click)="deleteEvento(evento)">
+            <button *hasPermission="'DELETAR_EVENTO'" type="button" class="btn btn-light" (click)="deleteEvento(evento)">
               <em class="far fa-trash-alt"></em> Remover
             </button>
           </td>
@@ -67,11 +67,11 @@
           <div class="attribute-column d-flex align-items-center">Fim</div>
           <div>{{evento.fim | date: 'HH:mm dd/MM/yyyy' }}</div>
         </li>
-        <li class="list-group-item d-flex justify-content-between">
+        <li *hasAnyPermission="['EDITAR_EVENTO', 'DELETAR_EVENTO']" class="list-group-item d-flex justify-content-between">
           <div class="attribute-column d-flex align-items-center">Ações</div>
           <div>
-            <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
-            <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
+            <button *hasPermission="'EDITAR_EVENTO'" type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
+            <button *hasPermission="'DELETAR_EVENTO'" type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
           </div>
         </li>
       </ul>

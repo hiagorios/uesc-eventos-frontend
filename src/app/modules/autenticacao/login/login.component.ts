@@ -1,3 +1,7 @@
+import { Router } from '@angular/router';
+import { SnackbarService } from './../../../services/snackbar.service';
+import { AuthService } from './../../../services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackbar: SnackbarService
+  ) { }
 
   ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
+
+  login(): void {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe(res => {
+        this.snackbar.open('Logado com sucesso');
+        this.router.navigate(['/home']);
+      }, error => {
+        this.snackbar.open('Credenciais inválidas');
+      });
+    } else {
+      this.snackbar.open('Preencha os campos necessários!');
+    }
   }
 }
 

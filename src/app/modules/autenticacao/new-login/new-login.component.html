@@ -10,17 +10,17 @@
     <div class="form-group">
       <label for="inputEmail">E-mail</label>
       <input type="email" class="form-control" formControlName="email" id="inputEmail">
-      <span class="text-danger" *ngIf="(this.userForm.controls.email.errors.required && this.tentouSalvar == true)">Este
+      <span class="text-danger" *ngIf="(this.userForm.controls.email.errors?.required && this.tentouSalvar == true)">Este
         campo não pode ser vazio.</span>
-      <span class="text-danger" *ngIf="(this.userForm.controls.email.errors.email && this.tentouSalvar == true)">Preencha com
+      <span class="text-danger" *ngIf="(this.userForm.controls.email.errors?.email && this.tentouSalvar == true)">Preencha com
         um email válido.</span>
     </div>
     <div class="form-group">
       <label for="inputCPF">CPF</label>
       <input type="text" class="form-control" formControlName="cpf" id="inputCPF" mask="000.000.000-00">
-      <span class="text-danger" *ngIf="(this.userForm.controls.cpf.errors.required && this.tentouSalvar == true)">Este
+      <span class="text-danger" *ngIf="(this.userForm.controls.cpf.errors?.required && this.tentouSalvar == true)">Este
         campo não pode ser vazio.</span>
-      <span class="text-danger" *ngIf="(this.userForm.controls.cpf.errors.minlength && this.tentouSalvar == true)">O CPF deve ser
+      <span class="text-danger" *ngIf="(this.userForm.controls.cpf.errors?.minlength && this.tentouSalvar == true)">O CPF deve ser
         preenchido com 11 números.</span>
     </div>
     <div class="form-group">

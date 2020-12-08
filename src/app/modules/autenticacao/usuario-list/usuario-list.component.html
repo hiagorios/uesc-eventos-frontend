@@ -16,7 +16,7 @@
           <th scope="col" class="text-center">Email</th>
           <th scope="col" class="text-center">Tipo</th>
           <th scope="col" class="text-center">CPF</th>
-          <th class="text-center" scope="col">Ações</th>
+          <th *hasAnyPermission="['EDITAR_USUARIO', 'DELETAR_USUARIO']" class="text-center" scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -29,11 +29,11 @@
             <span *ngSwitchCase="'P'" class="badge color-tertiary">Participante</span>
           </td>
           <td class="text-center">{{usuario.cpf}}</td>
-          <td class="d-flex justify-content-around">
-            <button type="button" class="btn btn-light mr-1" [routerLink]="['edit', usuario.id]">
+          <td *hasAnyPermission="['EDITAR_USUARIO', 'DELETAR_USUARIO']" class="d-flex justify-content-around">
+            <button *hasPermission="'EDITAR_USUARIO'" type="button" class="btn btn-light mr-1" [routerLink]="['edit', usuario.id]">
               <em class="fas fa-edit"></em> Editar
             </button>
-            <button type="button" class="btn btn-light" (click)="deleteUsuario(usuario)">
+            <button *hasPermission="'DELETAR_USUARIO'" type="button" class="btn btn-light" (click)="deleteUsuario(usuario)">
               <em class="far fa-trash-alt"></em> Remover
             </button>
           </td>
@@ -63,11 +63,11 @@
           <div class="attribute-column d-flex align-items-center">CPF</div>
           <div>{{usuario.cpf}}</div>
         </li>
-        <li class="list-group-item d-flex justify-content-between">
+        <li *hasAnyPermission="['EDITAR_USUARIO', 'DELETAR_USUARIO']" class="list-group-item d-flex justify-content-between">
           <div class="attribute-column d-flex align-items-center">Ações</div>
           <div>
-            <button type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
-            <button type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
+            <button *hasPermission="'EDITAR_USUARIO'" type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
+            <button *hasPermission="'DELETAR_USUARIO'" type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
           </div>
         </li>
       </ul>
