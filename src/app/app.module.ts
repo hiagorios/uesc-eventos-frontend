@@ -1,3 +1,4 @@
+import { DirectivesModule } from './directives/directives.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -8,6 +9,8 @@ import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AuthInterceptorProvider } from './interceptors/auth-interceptor';
+import { HttpInterceptorProvider } from './interceptors/MyHttpInterceptor';
 
 @NgModule({
   declarations: [
@@ -17,13 +20,16 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     BrowserModule,
     NgbModule,
+    DirectivesModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatSnackBarModule
   ],
   providers: [
-    { provide: OWL_DATE_TIME_LOCALE, useValue: 'pt-BR' }
+    { provide: OWL_DATE_TIME_LOCALE, useValue: 'pt-BR' },
+    AuthInterceptorProvider,
+    HttpInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })
