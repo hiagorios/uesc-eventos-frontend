@@ -60,6 +60,7 @@ export class AuthService {
   getCurrentUser(): AuthUser {
     if (!this.currentUser) {
       if (this.isAuthenticated()) {
+        console.log('is authenticated');
         const aToken = this.getAcessToken();
         if (aToken) {
           this.currentUserSource.next(this.decodeToken(aToken));
@@ -71,9 +72,10 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const aToken = this.getAcessToken();
-    if (aToken) {
-      return !this.jwtHelper.isTokenExpired(aToken);
+    if (aToken && !this.jwtHelper.isTokenExpired(aToken)) {
+      return true;
     }
+    this.setAcessToken(null);
     return false;
   }
 

@@ -16,6 +16,11 @@
           <a class="nav-link" *hasPermission="'CONSULTAR_USUARIO'" routerLink="/usuarios">Usuarios</a>
         </li>
       </ul>
+      <ul ngbNav class="navbar-nav ml-auto">
+        <li ngbNavItem>
+          <button class="btn button-dark" *isAuthenticated="true" (click)="logout()">Logout</button>
+        </li>
+      </ul>
     </div>
   </nav>
 </header>

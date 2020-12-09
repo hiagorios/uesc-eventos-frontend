@@ -28,8 +28,14 @@ a.button {
   &-secondary, &-secondary:hover {
     @extend .btn, .color-secondary;
   }
+  &-tertiary, &-tertiary:hover {
+    @extend .btn, .color-tertiary;
+  }
   &-light, &-light:hover {
     @extend .btn, .color-light;
+  }
+  &-dark, &-dark:hover {
+    @extend .btn, .color-dark;
   }
 }
 
