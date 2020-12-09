@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,7 +9,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { EventoService } from './../../../services/evento.service';
 import { MinistranteService } from './../../../services/ministrante.service';
 import { MinistranteComponent } from './ministrante/ministrante.component';
-
+import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-evento-form',
   templateUrl: './evento-form.component.html',
@@ -24,6 +24,8 @@ export class EventoFormComponent implements OnInit {
   eventos: EventoDTO[];
 
   tentouSalvar = false;
+
+  minist = new FormControl(null);
 
   constructor(
     public dialog: MatDialog,
@@ -51,6 +53,13 @@ export class EventoFormComponent implements OnInit {
 
     this.buscarMinistrantes();
     this.buscarEventos();
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   salvar(): void {

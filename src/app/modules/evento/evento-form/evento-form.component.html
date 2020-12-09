@@ -22,17 +22,19 @@
         <label for="selectMinistrante">Ministrantes</label>
         <div class="form-row align-items-center">
           <div class="col-8">
-            <select multiple formControlName="idsMinistrantes" class="custom-select mr-sm-2" id="selectMinistrante">
-              <option selected>Escolher...</option>
-              <option *ngFor="let m of ministrantes" [ngValue]="m.id">{{ m.nome }}</option>
-            </select>
+            <mat-form-field appearance="fill">
+              <mat-label>Escolha...</mat-label>
+              <mat-select [formControl]="minist" multiple>
+                <mat-option *ngFor="let m of ministrantes" [value]="m.id">{{m.nome}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="col-4">
             <a (click)="openDialog()" class="btn button-primary">Novo</a>
           </div>
         </div>
         <span class="text-danger"
-          *ngIf="(this.eventoForm.controls.selectMinistrante == null && this.tentouSalvar == true)">Selecione ao menos
+          *ngIf="(this.minist.value == null && this.tentouSalvar == true)">Selecione ao menos
           um
           ministrante.</span>
       </div>
