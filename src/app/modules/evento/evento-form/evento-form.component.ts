@@ -55,13 +55,6 @@ export class EventoFormComponent implements OnInit {
     this.buscarEventos();
   }
 
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-
   salvar(): void {
     this.tentouSalvar = true;
     if (this.eventoForm.valid) {
