@@ -1,51 +1,39 @@
 <section>
   <form [formGroup]="eventoForm" (ngSubmit)="salvar()" class="evento-form mx-md-0 mx-2 mt-4 card p-4">
     <h2>{{idEdicao ? 'Editar evento' : 'Criar evento'}}</h2>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputNome">Nome</label>
-        <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
-          placeholder="Dê um bom nome ao seu evento!">
-        <span class="text-danger" *ngIf="(this.eventoForm.controls.inputNome == null && this.tentouSalvar == true)">Este
-          campo não pode ser vazio.</span>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="selectEventoPai">Evento Pai</label>
-        <select formControlName="idEventoPai" class="form-control" id="selectEventoPai">
-          <option selected [ngValue]="null">Nenhum</option>
-          <option *ngFor="let e of eventos" [ngValue]="e.id">{{ e.nome }}</option>
-        </select>
-      </div>
+    <div class="form-group">
+      <label for="inputNome">Nome</label>
+      <input type="email" formControlName="nome" class="form-control" id="inputNome" aria-describedby="nomeHelp"
+        placeholder="Dê um bom nome ao seu evento!">
+      <span class="text-danger" *ngIf="(this.eventoForm.controls.inputNome == null && this.tentouSalvar == true)">Este
+        campo não pode ser vazio.</span>
     </div>
     <div class="form-row mt-3">
       <div class="form-group col-md-6">
-        <label for="selectMinistrante">Ministrantes</label>
-        <div class="form-row align-items-center">
-          <div class="col-8">
-            <mat-form-field appearance="fill">
-              <mat-label>Escolha...</mat-label>
-              <mat-select [formControl]="minist" multiple>
-                <mat-option *ngFor="let m of ministrantes" [value]="m.id">{{m.nome}}</mat-option>
+        <div class="form-row">
+          <div class="col-9">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Ministrantes</mat-label>
+              <mat-select formControlName="idsMinistrantes" multiple>
+                <mat-option *ngFor="let m of ministrantes" [value]="m.id">{{ m.nome }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-4">
-            <a (click)="openDialog()" class="btn button-primary">Novo</a>
+          <div class="col-3">
+            <a (click)="openDialog()" class="btn button-primary mt-2">Novo</a>
           </div>
         </div>
         <span class="text-danger"
-          *ngIf="(this.minist.value == null && this.tentouSalvar == true)">Selecione ao menos
-          um
-          ministrante.</span>
+          *ngIf="(this.eventoForm.controls.idsMinistrantes.value?.length == 0 && this.tentouSalvar == true)">
+          Selecione ao menos um ministrante.</span>
       </div>
-      <div class="col-md-6 d-flex flex-column">
-        <img class="w-100" *ngIf="hasImage(); else imageBox" [src]="this.eventoForm.get('imagem').value" />
-        <ng-template #imageBox>
-          <div id="imageBox" class="d-flex align-items-center justify-content-center h-100 color-light">
-            Imagem do evento
-          </div>
-        </ng-template>
-        <app-file-upload (fileChanged)="setImage($event)"></app-file-upload>
+      <div class="form-group col-md-6">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Evento pai</mat-label>
+          <mat-select formControlName="idEventoPai">
+            <mat-option *ngFor="let e of eventos" [value]="e.id">{{ e.nome }}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
     <div class="row mt-3">
@@ -88,12 +76,24 @@
           vazio.</span>
       </div>
     </div>
-    <div class="form-group mt-3">
-      <label for="taDescricao">Descrição</label>
-      <textarea class="form-control" formControlName="descricao" id="taDescricao" rows="3"
-        placeholder="Descreva seu evento e deixe ele mais atrativo!"></textarea>
-      <span class="text-danger" *ngIf="(this.eventoForm.controls.taDescricao == null && this.tentouSalvar == true)">Este
-        campo não pode ser vazio.</span>
+    <div class="form-row mt-4">
+      <div class="form-group col-md-6">
+        <label for="taDescricao">Descrição</label>
+        <textarea class="form-control" formControlName="descricao" id="taDescricao" rows="3"
+          placeholder="Descreva seu evento e deixe ele mais atrativo!"></textarea>
+        <span class="text-danger"
+          *ngIf="(this.eventoForm.controls.taDescricao == null && this.tentouSalvar == true)">Este
+          campo não pode ser vazio.</span>
+      </div>
+      <div class="col-md-6 d-flex flex-column">
+        <img class="w-100" *ngIf="hasImage(); else imageBox" [src]="this.eventoForm.get('imagem').value" />
+        <ng-template #imageBox>
+          <div id="imageBox" class="d-flex align-items-center justify-content-center h-100 color-light">
+            Imagem do evento
+          </div>
+        </ng-template>
+        <app-file-upload (fileChanged)="setImage($event)"></app-file-upload>
+      </div>
     </div>
     <div class="form-group">
       <label for="inputLocal">Local</label>

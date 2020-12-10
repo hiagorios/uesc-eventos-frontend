@@ -1,7 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventoDTO } from 'src/app/model/dto/evento-dto';
 import { Ministrante } from 'src/app/model/ministrante';
@@ -9,7 +8,6 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { EventoService } from './../../../services/evento.service';
 import { MinistranteService } from './../../../services/ministrante.service';
 import { MinistranteComponent } from './ministrante/ministrante.component';
-import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-evento-form',
   templateUrl: './evento-form.component.html',
@@ -25,8 +23,6 @@ export class EventoFormComponent implements OnInit {
 
   tentouSalvar = false;
 
-  minist = new FormControl(null);
-
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
@@ -34,8 +30,7 @@ export class EventoFormComponent implements OnInit {
     private router: Router,
     private eventoService: EventoService,
     private ministranteService: MinistranteService,
-    private snackbar: SnackbarService,
-    private sanitizer: DomSanitizer
+    private snackbar: SnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -44,9 +39,7 @@ export class EventoFormComponent implements OnInit {
       if (params.has('id')) {
         this.idEdicao = Number(params.get('id'));
         this.eventoService.findFormDto(Number(params.get('id'))).subscribe(evento => {
-          console.log(evento);
           this.eventoForm.patchValue(evento);
-          console.log(this.eventoForm);
         });
       }
     });
@@ -57,6 +50,7 @@ export class EventoFormComponent implements OnInit {
 
   salvar(): void {
     this.tentouSalvar = true;
+    console.log(this.eventoForm.get('idsMinistrantes'));
     if (this.eventoForm.valid) {
       this.converterProps();
       if (this.idEdicao) {
