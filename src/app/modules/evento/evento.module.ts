@@ -12,6 +12,7 @@ import { ComponentsModule } from './../../components/components.module';
 import { EventoFormComponent } from './evento-form/evento-form.component';
 import { MinistranteComponent } from './evento-form/ministrante/ministrante.component';
 import { EventoListComponent } from './evento-list/evento-list.component';
+import {MatSelectModule} from '@angular/material/select';
 
 const routes: Routes = [
   {
@@ -51,7 +52,8 @@ const routes: Routes = [
     FormsModule,
     ComponentsModule,
     DirectivesModule,
-    DigitOnlyModule
+    DigitOnlyModule,
+    MatSelectModule
   ],
   exports: [
     RouterModule
