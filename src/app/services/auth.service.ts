@@ -60,7 +60,6 @@ export class AuthService {
   getCurrentUser(): AuthUser {
     if (!this.currentUser) {
       if (this.isAuthenticated()) {
-        console.log('is authenticated');
         const aToken = this.getAcessToken();
         if (aToken) {
           this.currentUserSource.next(this.decodeToken(aToken));
