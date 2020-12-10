@@ -1,6 +1,6 @@
 <section class="create-evento-page d-flex justify-content-center align-items-center h-100">
   <form [formGroup]="userForm" (ngSubmit)="salvar()" class="new-login-form mt-4 card p-4">
-    <h2>Novo Usuário</h2>
+    <h2>{{idEdicao ? 'Editar Usuário' : 'Novo Usuário'}}</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="text" class="form-control" formControlName="nome" id="inputNome">
@@ -23,9 +23,17 @@
       <span class="text-danger" *ngIf="(this.userForm.controls.cpf.errors?.minlength && this.tentouSalvar == true)">O CPF deve ser
         preenchido com 11 números.</span>
     </div>
+    <div *ngIf="idEdicao" class="form-group mt-2">
+      <mat-form-field appearance="fill">
+        <mat-label>Perfil</mat-label>
+        <mat-select formControlName="perfilId">
+          <mat-option *ngFor="let p of perfis" [value]="p.id">{{ p.nome }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <div class="form-group">
       <label for="inputSenha">Senha</label>
-      <input type="password" class="form-control" formControlName="senha" id="inputSenha">
+      <input type="password" class="form-control" formControlName="senha" id="inputSenha" [placeholder]="idEdicao ? '(Inalterada)' : ''">
       <span class="text-danger" *ngIf="(this.userForm.controls.inputSenha== null && this.tentouSalvar == true)">Este
         campo não pode ser vazio.</span>
     </div>

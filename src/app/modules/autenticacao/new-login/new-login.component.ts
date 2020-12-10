@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { PerfilDTO } from './../../../model/dto/perfil-dto';
 @Component({
   selector: 'app-new-login',
   templateUrl: './new-login.component.html',
   styleUrls: ['./new-login.component.scss']
 })
 export class NewLoginComponent implements OnInit {
+
+  idEdicao: number;
+  perfis: PerfilDTO[];
 
   userForm: FormGroup;
   durationInSeconds = 5;
@@ -17,18 +21,44 @@ export class NewLoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private service: UsuarioService,
     private snackbar: SnackbarService
   ) { }
 
   ngOnInit(): void {
     this.inicializarForm();
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.service.findPerfisDto().subscribe(res => {
+          this.perfis = res;
+        })
+        this.service.findFormDto(Number(params.get('id'))).subscribe(usuario => {
+          // adicionando a escolha de perfil quando for edição
+          this.userForm.addControl('perfilId', new FormControl(undefined, [Validators.required]));
+          this.idEdicao = Number(params.get('id'));
+          // resentando os campos de senha pra não serem obrigatórios quando for edição
+          this.userForm.setControl('senha', new FormControl(['']));
+          this.userForm.setControl('confirmaSenha', new FormControl(['']));
+
+          this.userForm.patchValue(usuario);
+        }, error => {
+          this.snackbar.open('Erro ao buscar usuário');
+          this.router.navigate(['/usuarios']);
+        });
+      }
+    });
   }
 
   salvar(): void {
     this.tentouSalvar = true;
     if (this.userForm.valid) {
-      if (this.confirmaSenha()) {
+      if (this.idEdicao) {
+        this.service.update(this.userForm.value).subscribe(evento => {
+          this.snackbar.open('Usuário atualizado!');
+          this.router.navigate(['..']);
+        });
+      } else if (this.confirmaSenha()) {
         this.service.create(this.userForm.value).subscribe(usuario => {
           this.snackbar.open('Usuário criado!');
           this.router.navigate(['..']);
