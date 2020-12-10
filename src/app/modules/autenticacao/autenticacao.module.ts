@@ -8,6 +8,7 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { NewLoginComponent } from './new-login/new-login.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule, ReactiveFormsModule,
     NgxMaskModule.forRoot(),
+    MatSelectModule,
     DirectivesModule
   ],
   exports: [

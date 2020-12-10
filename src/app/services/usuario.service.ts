@@ -1,3 +1,4 @@
+import { PerfilDTO } from './../model/dto/perfil-dto';
 import { UsuarioDTO } from './../model/dto/usuario-dto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -31,5 +32,10 @@ export class UsuarioService extends BaseService<Usuario, UsuarioDTO, UsuarioForm
     );
   }
 
+  findPerfisDto():Observable<PerfilDTO[]> {
+    return this.http.get<PerfilDTO[]>(
+      this.createUrl([this.endpoint, 'perfisDto'])
+    );
+  }
 
 }

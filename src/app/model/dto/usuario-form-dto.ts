@@ -1,4 +1,5 @@
 import { Entity } from '../entity';
+import { PerfilDTO } from './perfil-dto';
 
 export interface UsuarioFormDTO extends Entity {
     id: number;
@@ -6,4 +7,5 @@ export interface UsuarioFormDTO extends Entity {
     email: string;
     senha: string;
     cpf: string;
+    perfilId: number;
 }
