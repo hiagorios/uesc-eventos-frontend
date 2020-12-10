@@ -29,6 +29,12 @@ const routes: Routes = [
     data: { isAuthenticated: false }
   },
   {
+    path: 'edit/:id',
+    component: NewLoginComponent,
+    canActivate: [AuthGuardService],
+    data: { hasPermission: 'EDITAR_USUARIO' }
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'

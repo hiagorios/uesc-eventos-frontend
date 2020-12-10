@@ -1,6 +1,6 @@
 <section class="create-evento-page d-flex justify-content-center align-items-center h-100">
   <form [formGroup]="userForm" (ngSubmit)="salvar()" class="new-login-form mt-4 card p-4">
-    <h2>Novo Usuário</h2>
+    <h2>{{idEdicao ? 'Editar Usuário' : 'Novo Usuário'}}</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="text" class="form-control" formControlName="nome" id="inputNome">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
@@ -10,6 +10,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class NewLoginComponent implements OnInit {
 
+  idEdicao: number;
+
   userForm: FormGroup;
   durationInSeconds = 5;
   tentouSalvar = false;
@@ -17,18 +19,32 @@ export class NewLoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private service: UsuarioService,
     private snackbar: SnackbarService
   ) { }
 
   ngOnInit(): void {
     this.inicializarForm();
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.idEdicao = Number(params.get('id'));
+        this.service.findFormDto(Number(params.get('id'))).subscribe(usuario => {
+          this.userForm.patchValue(usuario);
+        });
+      }
+    });
   }
 
   salvar(): void {
     this.tentouSalvar = true;
     if (this.userForm.valid) {
-      if (this.confirmaSenha()) {
+      if (this.idEdicao) {
+        this.service.update(this.userForm.value).subscribe(evento => {
+          this.snackbar.open('Usuário atualizado!');
+          this.router.navigate(['..']);
+        });
+      } else if (this.confirmaSenha()) {
         this.service.create(this.userForm.value).subscribe(usuario => {
           this.snackbar.open('Usuário criado!');
           this.router.navigate(['..']);
