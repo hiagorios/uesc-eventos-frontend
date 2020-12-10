@@ -10,25 +10,21 @@ import { UsuarioFormDTO } from '../model/dto/usuario-form-dto';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService extends BaseService<Usuario, UsuarioDTO, UsuarioFormDTO>{
-
-  private usuarioAutenticado: UsuarioDTO = {
-    id: 1,
-    nome: 'Hiago',
-    email: 'hrcordeiro.cic@uesc.br'
-  };
+export class UsuarioService extends BaseService<UsuarioDTO, UsuarioFormDTO, UsuarioFormDTO>{
 
   constructor(public http: HttpClient) {
     super(http, 'usuarios');
   }
 
-  getUsuarioAutenticado(): UsuarioDTO {
-    return this.usuarioAutenticado;
-  }
-
   findFormDto(id: number): Observable<UsuarioFormDTO> {
     return this.http.get<UsuarioFormDTO>(
       this.createUrl([this.endpoint, 'formDto', id.toString()])
+    );
+  }
+
+  findAllDto(): Observable<UsuarioDTO[]> {
+    return this.http.get<UsuarioDTO[]>(
+      this.createUrl([this.endpoint, 'allDto'])
     );
   }
 

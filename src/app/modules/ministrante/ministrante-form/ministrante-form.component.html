@@ -1,11 +1,10 @@
-<h2 mat-dialog-title>Criar ministrante</h2>
-<div mat-dialog-content>
-  <form [formGroup]="ministranteForm" (ngSubmit)="salvar()" class="m">
+<section>
+  <form [formGroup]="ministranteForm" (ngSubmit)="salvar()" class="ministrante-form mx-md-0 mx-2 mt-4 card p-4">
+    <h2>{{idEdicao ? 'Editar ministrante' : 'Criar ministrante'}}</h2>
     <div class="form-group">
       <label for="inputNome">Nome</label>
       <input type="text" class="form-control" formControlName="nome" id="inputNome">
-      <span class="text-danger"
-        *ngIf="(this.ministranteForm.controls.inputNome == null && this.tentouSalvar == true)">Este
+      <span class="text-danger" *ngIf="(this.ministranteForm.controls.inputNome == null && this.tentouSalvar == true)">Este
         campo não pode ser vazio.</span>
     </div>
     <div class="form-group">
@@ -25,13 +24,12 @@
     <div class="form-group">
       <label for="taFormacao">Formação</label>
       <textarea class="form-control" formControlName="formacao" id="taFormacao" rows="3"></textarea>
-      <span class="text-danger"
-        *ngIf="(this.ministranteForm.controls.taFormacao == null && this.tentouSalvar == true)">Este
+      <span class="text-danger" *ngIf="(this.ministranteForm.controls.taFormacao == null && this.tentouSalvar == true)">Este
         campo não pode ser vazio.</span>
     </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn button-secondary" routerLink="/ministrantes">Cancelar</button>
+      <button type="button" class="btn button-primary" (click)='salvar()'>Salvar</button>
+    </div>
   </form>
-</div>
-<div mat-dialog-actions class="d-flex justify-content-between mt-2">
-  <button class="btn button-secondary" (click)="cancel()">Cancela</button>
-  <button class="btn button-primary" (click)="salvar()" cdkFocusInitial>Confirma</button>
-</div>
+</section>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/model/usuario';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioDTO } from './../../../model/dto/usuario-dto';
 
 @Component({
   selector: 'app-usuario-list',
@@ -10,7 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class UsuarioListComponent implements OnInit {
 
-  usuarios: Usuario[];
+  usuarios: UsuarioDTO[];
 
   constructor(
     private service: UsuarioService,
@@ -21,7 +21,7 @@ export class UsuarioListComponent implements OnInit {
     this.refreshList();
   }
 
-  deleteUsuario(usuario: Usuario): void {
+  deleteUsuario(usuario: UsuarioDTO): void {
     const remove = confirm(`Delete ${usuario.nome}?`);
     if (remove) {
       this.service.delete(usuario.id).subscribe(() => {
@@ -35,7 +35,7 @@ export class UsuarioListComponent implements OnInit {
 
 
   refreshList(): void {
-    this.service.findAll().subscribe(usuarios => {
+    this.service.findAllDto().subscribe(usuarios => {
       this.usuarios = usuarios;
     });
   }
