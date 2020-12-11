@@ -27,7 +27,7 @@ export class ModalInscricaoComponent implements OnInit {
     this.eventoService.findListDto(this.eventoId).subscribe(evento => {
       this.evento = evento;
     }, error => {
-      this.snackbar.open('Não foi possível encontrar o evento', 4);
+      this.snackbar.open(error.error.message, 4);
     });
   }
 
@@ -36,7 +36,7 @@ export class ModalInscricaoComponent implements OnInit {
       .subscribe(res => {
         this.snackbar.open('Inscrição realizada!');
       }, error => {
-        this.snackbar.open('Não foi possível realizar a inscrição');
+        this.snackbar.open(error.error.message);
       });
     this.dialogRef.close();
   }

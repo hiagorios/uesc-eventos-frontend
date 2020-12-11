@@ -43,7 +43,7 @@ export class NewLoginComponent implements OnInit {
 
           this.userForm.patchValue(usuario);
         }, error => {
-          this.snackbar.open('Erro ao buscar usuário');
+          this.snackbar.open(error.error.message);
           this.router.navigate(['/usuarios']);
         });
       }
@@ -57,11 +57,15 @@ export class NewLoginComponent implements OnInit {
         this.service.update(this.userForm.value).subscribe(Usuario => {
           this.snackbar.open('Usuário atualizado!');
           this.router.navigate(['/usuarios']);
+        }, error => {
+          this.snackbar.open(error.error.message);
         });
       } else if (this.confirmaSenha()) {
         this.service.create(this.userForm.value).subscribe(usuario => {
           this.snackbar.open('Usuário criado!');
           this.router.navigate(['..']);
+        }, error => {
+          this.snackbar.open(error.error.message);
         });
       } else {
         this.snackbar.open('As senhas informadas não são iguais.');

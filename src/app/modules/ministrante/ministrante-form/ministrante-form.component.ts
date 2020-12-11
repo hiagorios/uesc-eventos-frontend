@@ -32,7 +32,7 @@ export class MinistranteFormComponent implements OnInit {
         this.service.findFormDto(Number(params.get('id'))).subscribe(ministrante => {
           this.ministranteForm.patchValue(ministrante);
         }, error => {
-          this.snackbar.open('Erro ao buscar ministrante');
+          this.snackbar.open(error.error.message);
           this.router.navigate(['/ministrantes']);
         });
       }
@@ -46,11 +46,15 @@ export class MinistranteFormComponent implements OnInit {
         this.service.update(this.ministranteForm.value).subscribe(ministrante => {
           this.snackbar.open('Ministrante atualizado!');
           this.router.navigate(['/ministrantes']);
+        }, error => {
+          this.snackbar.open(error.error.message);
         });
       } else {
         this.service.create(this.ministranteForm.value).subscribe(ministrante => {
           this.snackbar.open('Ministrante criado!');
           this.router.navigate(['/ministrantes']);
+        }, error => {
+          this.snackbar.open(error.error.message);
         });
       }
     } else {

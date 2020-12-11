@@ -34,7 +34,7 @@ export class MinistranteComponent implements OnInit {
         this.snackbar.open('Ministrante criado!');
         this.dialogRef.close(ministrante.id);
       }, error => {
-        this.snackbar.open('Erro ao criar ministrante');
+        this.snackbar.open(error.error.message);
       });
     } else {
       this.snackbar.open('Preencha os campos necessários!');

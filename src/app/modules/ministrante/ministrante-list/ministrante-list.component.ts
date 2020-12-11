@@ -28,7 +28,7 @@ export class MinistranteListComponent implements OnInit {
         this.snackbar.open('Ministrante deletado!');
         this.refreshList();
       }, error => {
-        this.snackbar.open('Não foi possível deletar o Ministrante ' + ministrante.nome);
+        this.snackbar.open(error.error.message);
       });
     }
   }

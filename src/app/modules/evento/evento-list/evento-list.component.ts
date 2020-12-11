@@ -22,13 +22,13 @@ export class EventoListComponent implements OnInit {
   }
 
   deleteEvento(evento: EventoListDTO): void {
-    const remove = confirm(`Delete ${evento.nome}?`);
+    const remove = confirm(`Deletar ${evento.nome} e seus sub-eventos?`);
     if (remove) {
       this.service.delete(evento.id).subscribe(() => {
         this.snackbar.open('Evento deletado!');
         this.refreshList();
       }, error => {
-        this.snackbar.open('Não foi possível deletar o Evento');
+        this.snackbar.open(error.error.message);
       });
     }
   }

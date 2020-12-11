@@ -38,6 +38,7 @@ export abstract class BaseService<ListDTO extends Entity, CreateDTO, UpdateDTO e
       `${environment.springboot.baseURL}/${this.endpoint}/${id}`
     );
   }
+
   protected createUrl(segments: string[], baseURL: string = environment.springboot.baseURL): string {
     return baseURL.concat('/').concat(segments.join('/'));
   }

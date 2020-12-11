@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         this.snackbar.open('Logado com sucesso');
         this.router.navigate(['/home']);
       }, error => {
-        this.snackbar.open('Credenciais inválidas');
+        this.snackbar.open(error.error.message);
       });
     } else {
       this.snackbar.open('Preencha os campos necessários!');
