@@ -41,6 +41,9 @@ export class EventoFormComponent implements OnInit {
         this.idEdicao = Number(params.get('id'));
         this.eventoService.findFormDto(Number(params.get('id'))).subscribe(evento => {
           this.eventoForm.patchValue(evento);
+        }, error => {
+          this.snackbar.open(error.error.message);
+          this.router.navigate(['/eventos']);
         });
       }
     });
@@ -57,11 +60,15 @@ export class EventoFormComponent implements OnInit {
         this.eventoService.update(this.eventoForm.value).subscribe(evento => {
           this.snackbar.open('Evento atualizado!');
           this.router.navigate(['/eventos']);
+        }, error => {
+          this.snackbar.open(error.error.message);
         });
       } else {
         this.eventoService.create(this.eventoForm.value).subscribe(evento => {
           this.snackbar.open('Evento criado!');
           this.router.navigate(['/eventos']);
+        }, error => {
+          this.snackbar.open(error.error.message);
         });
       }
     } else {

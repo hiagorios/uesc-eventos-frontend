@@ -28,7 +28,7 @@ export class UsuarioListComponent implements OnInit {
         this.snackbar.open('Usuario deletado!');
         this.refreshList();
       }, error => {
-        this.snackbar.open('Não foi possível deletar o Usuario');
+        this.snackbar.open(error.error.message);
       });
     }
   }
