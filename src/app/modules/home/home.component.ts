@@ -12,6 +12,7 @@ import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.compo
 export class HomeComponent implements OnInit {
 
   eventos: EventoListDTO[] = [];
+  public selectedData = new Date();
 
   constructor(
     private eventoService: EventoService,
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.eventoService.findAllAvailable().subscribe(eventos => {
+    this.eventoService.findAllAvailableByDate(this.selectedData.toLocaleString('br').replace(/\//g, '-')).subscribe(eventos => {
       this.eventos = eventos;
     });
   }
@@ -34,6 +35,12 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
+    });
+  }
+
+  findEvents(event: Event): void {
+    this.eventoService.findAllAvailableByDate(this.selectedData.toLocaleString('br').replace(/\//g, '-')).subscribe(eventos => {
+      this.eventos = eventos;
     });
   }
 
