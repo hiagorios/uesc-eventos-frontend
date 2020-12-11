@@ -4,16 +4,23 @@
     <a class="navbar-brand" routerLink="/home">
       <img src="assets/images/logo_horizontal.png" alt="Application logo">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <button *isAuthenticated="true" type="button" class="btn btn-light mr-1 nav-bar-min ml-auto" mat-button [matMenuTriggerFor]="menu"><i class="fas fa-bars fa-lg"></i></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="nav-link btn btn-light mr-1" *hasPermission="'CONSULTAR_EVENTO'" routerLink="/eventos">Eventos</button>
+      <button mat-menu-item class="nav-link btn btn-light mr-1" *hasPermission="'CONSULTAR_USUARIO'" routerLink="/usuarios">Usuários</button>
+      <button mat-menu-item class="nav-link btn btn-light mr-1" *hasPermission="'CONSULTAR_MINISTRANTE'" routerLink="/ministrantes">Ministrantes</button>
+      <button mat-menu-item class="btn btn-light mr-1" *isAuthenticated="true" (click)="logout()">Logout</button>
+    </mat-menu>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul ngbNav class="navbar-nav">
         <li ngbNavItem>
           <a class="nav-link" *hasPermission="'CONSULTAR_EVENTO'" routerLink="/eventos">Eventos</a>
         </li>
         <li ngbNavItem>
-          <a class="nav-link" *hasPermission="'CONSULTAR_USUARIO'" routerLink="/usuarios">Usuarios</a>
+          <a class="nav-link" *hasPermission="'CONSULTAR_USUARIO'" routerLink="/usuarios">Usuários</a>
+        </li>
+        <li ngbNavItem>
+          <a class="nav-link" *hasPermission="'CONSULTAR_MINISTRANTE'" routerLink="/ministrantes">Ministrantes</a>
         </li>
       </ul>
       <ul ngbNav class="navbar-nav ml-auto">

@@ -5,13 +5,13 @@
     </div>
     <table class="table w-100 mt-4 card-body">
       <caption *ngIf="!usuarios || usuarios.length == 0">
-        Nenhum usuario cadastrado
+        Nenhum usuário cadastrado
       </caption>
       <thead>
         <tr class="table-primary">
           <th scope="col" class="text-center">Nome</th>
           <th scope="col" class="text-center">Email</th>
-          <th scope="col" class="text-center">Tipo</th>
+          <th scope="col" class="text-center">Perfil</th>
           <th scope="col" class="text-center">CPF</th>
           <th *hasAnyPermission="['EDITAR_USUARIO', 'DELETAR_USUARIO']" class="text-center" scope="col">Ações</th>
         </tr>
@@ -20,11 +20,7 @@
         <tr *ngFor="let usuario of usuarios">
           <td class="text-center">{{usuario.nome}}</td>
           <td class="text-center">{{usuario.email}}</td>
-          <td class="text-center" [ngSwitch]="usuario.tipoUsuario">
-            <span *ngSwitchCase="'A'" class="badge color-primary">Administrador</span>
-            <span *ngSwitchCase="'O'" class="badge color-secondary">Organizador</span>
-            <span *ngSwitchCase="'P'" class="badge color-tertiary">Participante</span>
-          </td>
+          <td class="text-center">{{usuario.perfil.nome}}</td>
           <td class="text-center">{{usuario.cpf}}</td>
           <td *hasAnyPermission="['EDITAR_USUARIO', 'DELETAR_USUARIO']" class="d-flex justify-content-around">
             <button *hasPermission="'EDITAR_USUARIO'" type="button" class="btn btn-light mr-1" [routerLink]="['edit', usuario.id]">
@@ -49,12 +45,8 @@
           <div>{{usuario.email}}</div>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <div class="attribute-column d-flex align-items-center">Tipo</div>
-          <div [ngSwitch]="usuario.tipoUsuario">
-            <span *ngSwitchCase="'A'" class="badge color-primary">Administrador</span>
-            <span *ngSwitchCase="'O'" class="badge color-secondary">Organizador</span>
-            <span *ngSwitchCase="'P'" class="badge color-tertiary">Participante</span>
-          </div>
+          <div class="attribute-column d-flex align-items-center">Perfil</div>
+          <div>{{usuario.perfil.nome}}</div>
         </li>
         <li class="list-group-item d-flex justify-content-between">
           <div class="attribute-column d-flex align-items-center">CPF</div>
@@ -63,8 +55,12 @@
         <li *hasAnyPermission="['EDITAR_USUARIO', 'DELETAR_USUARIO']" class="list-group-item d-flex justify-content-between">
           <div class="attribute-column d-flex align-items-center">Ações</div>
           <div>
-            <button *hasPermission="'EDITAR_USUARIO'" type="button" class="btn btn-light mr-1"><em class="fas fa-edit"></em> Editar</button>
-            <button *hasPermission="'DELETAR_USUARIO'" type="button" class="btn btn-light"><em class="far fa-trash-alt"></em> Remover</button>
+            <button *hasPermission="'EDITAR_USUARIO'" type="button" class="btn btn-light mr-1" [routerLink]="['edit', usuario.id]">
+              <em class="fas fa-edit"></em> Editar
+            </button>
+            <button *hasPermission="'DELETAR_USUARIO'" type="button" class="btn btn-light" (click)="deleteUsuario(usuario)">
+              <em class="far fa-trash-alt"></em> Remover
+            </button>
           </div>
         </li>
       </ul>

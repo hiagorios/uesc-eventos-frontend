@@ -54,9 +54,9 @@ export class NewLoginComponent implements OnInit {
     this.tentouSalvar = true;
     if (this.userForm.valid) {
       if (this.idEdicao) {
-        this.service.update(this.userForm.value).subscribe(evento => {
+        this.service.update(this.userForm.value).subscribe(Usuario => {
           this.snackbar.open('Usuário atualizado!');
-          this.router.navigate(['..']);
+          this.router.navigate(['/usuarios']);
         });
       } else if (this.confirmaSenha()) {
         this.service.create(this.userForm.value).subscribe(usuario => {

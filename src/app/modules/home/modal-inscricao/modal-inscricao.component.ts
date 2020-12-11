@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { SnackbarService } from './../../../services/snackbar.service';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class ModalInscricaoComponent implements OnInit {
 
   constructor(
     private eventoService: EventoService,
-    private usuarioService: UsuarioService,
+    private auth: AuthService,
     private snackbar: SnackbarService,
     public dialogRef: MatDialogRef<ModalInscricaoComponent>,
     @Inject(MAT_DIALOG_DATA) public eventoId: number
@@ -31,7 +32,7 @@ export class ModalInscricaoComponent implements OnInit {
   }
 
   inscrever(): void {
-    this.eventoService.realizarInscricao(this.evento.id, this.usuarioService.getUsuarioAutenticado().id)
+    this.eventoService.realizarInscricao(this.evento.id, this.auth.getCurrentUser().id)
       .subscribe(res => {
         this.snackbar.open('Inscrição realizada!');
       }, error => {

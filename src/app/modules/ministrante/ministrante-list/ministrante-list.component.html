@@ -1,0 +1,75 @@
+<section class="evento-list-page d-flex justify-content-center align-items-center h-100">
+  <div class="card p-4 mt-4">
+    <div class="d-flex justify-content-between">
+      <h2>Todos os ministrantes</h2>
+      <button *hasPermission="'CRIAR_MINISTRANTE'" type="button" class="btn btn-primary" routerLink="new">
+        <em class="fas fa-plus"></em> Criar
+      </button>
+    </div>
+    <table class="table w-100 mt-4 card-body">
+      <caption *ngIf="!ministrantes || ministrantes.length == 0">
+        Nenhum ministrante cadastrado
+      </caption>
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="text-center">Nome</th>
+          <th scope="col" class="text-center">Email</th>
+          <th scope="col" class="text-center">Instituição</th>
+          <th *hasAnyPermission="['EDITAR_MINISTRANTE', 'DELETAR_MINISTRANTE']" class="text-center" scope="col">Ações
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ministrante of ministrantes">
+          <td class="text-center">{{ministrante.nome}}</td>
+          <td class="text-center">{{ministrante.email}}</td>
+          <td class="text-center">{{ministrante.instituicao}}</td>
+          <td *hasAnyPermission="['EDITAR_MINISTRANTE', 'DELETAR_MINISTRANTE']" class="d-flex justify-content-around">
+            <button *hasPermission="'EDITAR_MINISTRANTE'" type="button" class="btn btn-light mr-1"
+              [routerLink]="['edit', ministrante.id]">
+              <em class="fas fa-edit"></em> Editar
+            </button>
+            <button *hasPermission="'DELETAR_MINISTRANTE'" type="button" class="btn btn-light"
+              (click)="deleteMinistrante(ministrante)">
+              <em class="far fa-trash-alt"></em> Remover
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="ministrantes && ministrantes.length > 0; else nenhumMinistrante" class="list-group-wrapper">
+      <ul *ngFor="let ministrante of ministrantes" class="list-group mt-3">
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Nome</div>
+          <div>{{ministrante.nome}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Email</div>
+          <div>{{ministrante.email}}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Instituição</div>
+          <div>{{ministrante.instituicao}}</div>
+        </li>
+        <li *hasAnyPermission="['EDITAR_MINISTRANTE', 'DELETAR_MINISTRANTE']"
+          class="list-group-item d-flex justify-content-between">
+          <div class="attribute-column d-flex align-items-center">Ações</div>
+          <div>
+            <button *hasPermission="'EDITAR_MINISTRANTE'" type="button" class="btn btn-light mr-1" [routerLink]="['edit', ministrante.id]">
+              <em class="fas fa-edit"></em> Editar
+            </button>
+            <button *hasPermission="'DELETAR_MINISTRANTE'" type="button" class="btn btn-light" (click)="deleteMinistrante(ministrante)">
+              <em class="far fa-trash-alt"></em> Remover
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #nenhumMinistrante>
+      <p class="msg-nenhum-ministrante">
+        Nenhum ministrante cadastrado
+      </p>
+    </ng-template>
+  </div>
+</section>
