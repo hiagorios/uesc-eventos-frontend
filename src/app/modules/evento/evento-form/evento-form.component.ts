@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventoDTO } from 'src/app/model/dto/evento-dto';
 import { Ministrante } from 'src/app/model/ministrante';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { MinistranteFormComponent } from '../../ministrante/ministrante-form/ministrante-form.component';
 import { EventoService } from './../../../services/evento.service';
 import { MinistranteService } from './../../../services/ministrante.service';
 import { MinistranteComponent } from './ministrante/ministrante.component';
@@ -50,18 +51,17 @@ export class EventoFormComponent implements OnInit {
 
   salvar(): void {
     this.tentouSalvar = true;
-    console.log(this.eventoForm.get('idsMinistrantes'));
     if (this.eventoForm.valid) {
       this.converterProps();
       if (this.idEdicao) {
         this.eventoService.update(this.eventoForm.value).subscribe(evento => {
           this.snackbar.open('Evento atualizado!');
-          this.router.navigate(['..']);
+          this.router.navigate(['/eventos']);
         });
       } else {
         this.eventoService.create(this.eventoForm.value).subscribe(evento => {
           this.snackbar.open('Evento criado!');
-          this.router.navigate(['..']);
+          this.router.navigate(['/eventos']);
         });
       }
     } else {
@@ -102,12 +102,14 @@ export class EventoFormComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(MinistranteComponent, {
       disableClose: true,
-      width: '500px'
+      panelClass: '',
+      width: '800px'
     });
 
     dialogRef.afterClosed().subscribe(idMinsitrante => {
       if (idMinsitrante) {
-        this.eventoForm.get('idsMinistrantes').setValue([idMinsitrante]);
+        const control = this.eventoForm.get('idsMinistrantes');
+        control.setValue([idMinsitrante].concat(control.value));
         this.buscarMinistrantes();
       }
     });

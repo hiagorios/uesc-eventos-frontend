@@ -3,4 +3,5 @@ export interface Ministrante {
   nome: string;
   email: string;
   formacao: string;
+  instituicao?: string;
 }
