@@ -21,3 +21,19 @@ header, main, footer, app-root {
 main {
   flex-grow: 1;
 }
+.nav-bar-min{
+  display: none;
+  
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 993px) {
+  .nav-bar-min{
+    margin: 0px;
+    display: flex;
+  }
+  nav{
+    display: flex;
+    justify-content: flex-start;
+  }
+}

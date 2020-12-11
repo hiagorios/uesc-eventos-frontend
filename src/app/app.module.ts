@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthInterceptorProvider } from './interceptors/auth-interceptor';
 import { HttpInterceptorProvider } from './interceptors/MyHttpInterceptor';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpInterceptorProvider } from './interceptors/MyHttpInterceptor';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [
     { provide: OWL_DATE_TIME_LOCALE, useValue: 'pt-BR' },
