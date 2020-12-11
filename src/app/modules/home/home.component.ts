@@ -12,7 +12,7 @@ import { ModalInscricaoComponent } from './modal-inscricao/modal-inscricao.compo
 export class HomeComponent implements OnInit {
 
   eventos: EventoListDTO[] = [];
-  public selectedData = new Date();
+  public selectedDate = new Date();
 
   constructor(
     private eventoService: EventoService,
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.eventoService.findAllAvailableByDate(this.selectedData.toLocaleString('br').replace(/\//g, '-')).subscribe(eventos => {
+    this.eventoService.findAllAvailable().subscribe(eventos => {
       this.eventos = eventos;
     });
   }
@@ -38,8 +38,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  dateToString(date: Date) {
+    let hours, minutes, seconds;
+
+    (date.getHours() <= 9) ? hours = `0${date.getHours()}` : hours = `${date.getHours()}`;
+    (date.getMinutes() <= 9) ? minutes = `0${date.getMinutes()}` : minutes = `${date.getMinutes()}`;
+    (date.getSeconds() <= 9) ? seconds = `0${date.getSeconds()}` : seconds = `${date.getSeconds()}`;
+
+    return `${date.getDate()}-${(date.getMonth())+1}-${date.getFullYear()} ${hours}:${minutes}:${seconds}`;
+  }
+
   findEvents(event: Event): void {
-    this.eventoService.findAllAvailableByDate(this.selectedData.toLocaleString('br').replace(/\//g, '-')).subscribe(eventos => {
+    this.eventoService.findAllAvailableByDate(this.dateToString(this.selectedDate)).subscribe(eventos => {
       this.eventos = eventos;
     });
   }

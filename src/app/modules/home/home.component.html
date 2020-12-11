@@ -12,7 +12,7 @@
       </form>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12 mt-md-0 mt-sm-2 mt-2">
-      <input [(ngModel)]="selectedData" [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
+      <input [(ngModel)]="selectedDate" [owlDateTimeTrigger]="dtInicio" [owlDateTime]="dtInicio" class="form-control" readonly
         placeholder="Data do evento" (ngModelChange)="findEvents($event)" >
       <owl-date-time #dtInicio pickerType="calendar" panelClass="app-datepicker"></owl-date-time>
     </div>
