@@ -20,6 +20,12 @@ export class EventoService extends BaseService<EventoListDTO, EventoFormDTO, Eve
     );
   }
 
+  findAllAvailableByDate(date: string): Observable<EventoListDTO[]> {
+    return this.http.get<EventoListDTO[]>(
+      this.createUrl([this.endpoint, 'available', date])
+    );
+  }
+
   findFormDto(id: number): Observable<EventoFormDTO> {
     return this.http.get<EventoFormDTO>(
       this.createUrl([this.endpoint, 'formDto', id.toString()])
