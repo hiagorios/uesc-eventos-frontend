@@ -8,6 +8,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item class="nav-link btn btn-light mr-1" *hasPermission="'CONSULTAR_EVENTO'" routerLink="/eventos">Eventos</button>
       <button mat-menu-item class="nav-link btn btn-light mr-1" *hasPermission="'CONSULTAR_USUARIO'" routerLink="/usuarios">Usuários</button>
+      <button mat-menu-item class="nav-link btn btn-light mr-1" *hasPermission="'CONSULTAR_MINISTRANTE'" routerLink="/ministrantes">Ministrantes</button>
       <button mat-menu-item class="btn btn-light mr-1" *isAuthenticated="true" (click)="logout()">Logout</button>
     </mat-menu>
     <div class="collapse navbar-collapse" id="navbarNav">
